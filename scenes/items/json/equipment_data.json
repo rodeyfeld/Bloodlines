@@ -1,0 +1,52 @@
+{
+    "Slot1":
+    {
+        "ItemCategory": "Gem",
+        "IconPath": "res://assets/items/gems/round-faceted-blue.png",
+        "Description": "It shines with an intense light",
+        "ItemBuffs": {
+            "BonusHealth": 10,
+            "BonusDamage": 10
+        }
+    },
+    "Slot2":
+    {
+        "ItemCategory": "Gem",
+        "IconPath": "res://assets/items/gems/round-faceted-blue.png",
+        "Description": "It shines with an intense light",
+        "ItemBuffs": {
+            "BonusHealth": 10,
+            "BonusDamage": 10
+        }
+    },
+    "Slot3":
+    {
+        "ItemCategory": "Gem",
+        "IconPath": "res://assets/items/gems/round-faceted-blue.png",
+        "Description": "It shines with an intense light",
+        "ItemBuffs": {
+            "BonusHealth": 10,
+            "BonusDamage": 10
+        }
+    },
+    "Slot4":
+    {
+        "ItemCategory": "Gem",
+        "IconPath": "res://assets/items/gems/round-faceted-blue.png",
+        "Description": "It shines with an intense light",
+        "ItemBuffs": {
+            "BonusHealth": 10,
+            "BonusDamage": 10
+        }
+    },
+    "Slot5":
+    {
+        "ItemCategory": "Gem",
+        "IconPath": "res://assets/items/gems/round-faceted-blue.png",
+        "Description": "It shines with an intense light",
+        "ItemBuffs": {
+            "BonusHealth": 10,
+            "BonusDamage": 10
+        }
+    }
+}

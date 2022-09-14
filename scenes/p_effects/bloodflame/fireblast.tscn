@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/p_effects/bloodflame/flame.tres" type="Gradient" id=1]
+[ext_resource path="res://scenes/p_effects/bloodflame/fireblast.gd" type="Script" id=2]
+
+[sub_resource type="GradientTexture" id=1]
+gradient = ExtResource( 1 )
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 1 ), 0.0, 1.4, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+angular_velocity = 720.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 4.0
+scale_curve = SubResource( 3 )
+color_ramp = SubResource( 1 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+amount = 100
+explosiveness = 0.8
+process_material = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

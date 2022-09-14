@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/effects/baseparticles/twirl_01.png" type="Texture" id=1]
+
+[sub_resource type="Gradient" id=6]
+colors = PoolColorArray( 0.409546, 0.429688, 0.424967, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+flag_disable_z = true
+spread = 105.3
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 71.06
+angular_velocity = 720.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color_ramp = SubResource( 5 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Particles2D2" type="Particles2D" parent="."]
+amount = 20
+process_material = SubResource( 7 )
+texture = ExtResource( 1 )

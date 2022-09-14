@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/effects/baseparticles/circle_01.png" type="Texture" id=1]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.492795, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.914053, 0.958496, 0.640245, 0.512968, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 80.0
+angular_velocity = 20.0
+orbit_velocity = 0.5
+orbit_velocity_random = 0.0
+color_ramp = SubResource( 2 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Particles2D" type="Particles2D" parent="."]
+amount = 10
+lifetime = 3.0
+process_material = SubResource( 3 )
+texture = ExtResource( 1 )

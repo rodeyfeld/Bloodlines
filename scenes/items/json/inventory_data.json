@@ -1,0 +1,15 @@
+{
+    "Inventory_Items": [
+        {
+            "ItemCategory": "Gem",
+            "ItemName": "Cerulean Teardrop",
+            "StackSize": 10,
+            "IconPath": "res://assets/items/gems/round-faceted-blue.png",
+            "Description": "It shines with an intense light",
+            "ItemBuffs": {
+                "BonusHealth": 10,
+                "BonusDamage": 10
+            }
+        }
+    ]
+}

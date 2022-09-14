@@ -1,0 +1,120 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scenes/p_effects/bloodflame/nova.gd" type="Script" id=1]
+[ext_resource path="res://scenes/overlap/Hitbox.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 46.0109
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 121.0
+
+[sub_resource type="Animation" id=8]
+resource_name = "New Anim (2)"
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Hitbox/CollisionShape2D:shape")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ SubResource( 4 ), SubResource( 7 ), SubResource( 7 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Hitbox/CollisionShape2D:shape")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ SubResource( 4 ) ]
+}
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.398773, 0.98773, 1 )
+colors = PoolColorArray( 0.976471, 0.825123, 0.00784315, 1, 0.556863, 0.415686, 0.0117647, 1, 0.984314, 0.380392, 0.0196078, 0.184314, 0.486275, 0.00392157, 0.00784314, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+emission_shape = 5
+emission_ring_radius = 80.0
+emission_ring_inner_radius = 20.0
+emission_ring_height = 1.0
+emission_ring_axis = Vector3( 0, 0, 1 )
+flag_align_y = true
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 10.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = 100.0
+scale = 5.0
+color_ramp = SubResource( 2 )
+
+[sub_resource type="GradientTexture" id=11]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 5
+emission_ring_radius = 20.0
+emission_ring_inner_radius = 0.0
+emission_ring_height = 1.0
+emission_ring_axis = Vector3( 0, 0, 1 )
+flag_align_y = true
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 500.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = -1000.0
+scale = 5.0
+color_ramp = SubResource( 11 )
+
+[node name="Node2D" type="KinematicBody2D"]
+script = ExtResource( 1 )
+
+[node name="test" type="AnimationPlayer" parent="."]
+"anims/New Anim (2)" = SubResource( 8 )
+anims/RESET = SubResource( 9 )
+
+[node name="Particles2D2" type="Particles2D" parent="."]
+amount = 100
+explosiveness = 1.0
+process_material = SubResource( 10 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+amount = 500
+explosiveness = 0.9
+process_material = SubResource( 3 )
+
+[node name="Hitbox" parent="." instance=ExtResource( 2 )]
+collision_mask = 9
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="Hitbox"]

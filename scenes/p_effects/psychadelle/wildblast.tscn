@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/effects/baseparticles/magic_02.png" type="Texture" id=1]
+[ext_resource path="res://assets/effects/baseparticles/window_04.png" type="Texture" id=2]
+[ext_resource path="res://assets/effects/baseparticles/star_06.png" type="Texture" id=3]
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 5
+emission_ring_radius = 200.0
+emission_ring_inner_radius = 150.0
+emission_ring_height = 1.0
+emission_ring_axis = Vector3( 0, 0, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+angular_velocity = 720.0
+angular_velocity_random = 0.4
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = -200.0
+hue_variation = 1.0
+hue_variation_random = 1.0
+
+[sub_resource type="Curve" id=3]
+min_value = -1.0
+_data = [ Vector2( 0, 1 ), 0.0, -7.34091, 0, 0, Vector2( 0.210811, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.340541, 0.902273 ), 0.0, 0.0, 0, 0, Vector2( 0.494595, -0.115909 ), 0.0, 0.0, 0, 0, Vector2( 0.697297, 0.920455 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+flatness = 1.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 600.0
+angular_velocity = 627.46
+angular_velocity_random = 1.0
+orbit_velocity = 1.0
+orbit_velocity_random = 0.0
+scale = 3.0
+scale_random = 1.0
+hue_variation = 1.0
+hue_variation_random = 1.0
+hue_variation_curve = SubResource( 4 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Particles2D" type="Particles2D" parent="."]
+visible = false
+scale = Vector2( 4, 4 )
+amount = 100
+process_material = SubResource( 1 )
+
+[node name="Particles2D2" type="Particles2D" parent="."]
+visible = false
+scale = Vector2( 0.1, 0.1 )
+amount = 50
+explosiveness = 1.0
+process_material = SubResource( 2 )
+texture = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0.596078, 0.552941, 0.972549, 1 )
+texture = ExtResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 1 )
