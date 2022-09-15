@@ -12,6 +12,9 @@ margin_right = 40.0
 margin_bottom = 40.0
 mouse_filter = 2
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Label" type="Label" parent="."]
 margin_left = 25.0
@@ -19,3 +22,6 @@ margin_top = 27.0
 margin_right = 65.0
 margin_bottom = 41.0
 text = "99"
+__meta__ = {
+"_edit_use_anchors_": true
+}

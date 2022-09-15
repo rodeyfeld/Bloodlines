@@ -4,6 +4,8 @@ extends Panel
 var empty_tex = preload("res://assets/ui/slot2.png")
 var default_tex = preload("res://assets/ui/slot1.png")
 
+#var item_scene = preload("res://scenes/inventory/Item.tscn")
+
 var empty_style: StyleBoxTexture = null
 var default_style: StyleBoxTexture = null
 
@@ -15,12 +17,17 @@ func _ready():
 
 	default_style = StyleBoxTexture.new()
 	default_style.texture = default_tex
-	
-#	if randi() % 2 == 0:
+#
 #	item = item_scene.instance()
+#	add_child(item)
+	refresh_style()
+
+func load_item():
+	print(item)
+	item.load_texture()
 	add_child(item)
 	refresh_style()
-	
+
 func refresh_style():
 	if item == null:
 		set('custom_styles/panel', empty_style)

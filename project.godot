@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Bloodlines"
-run/main_scene="res://scenes/levels/level1.tscn"
+run/main_scene="res://scenes/inventory/inventory.tscn"
 config/icon="res://icon.png"
 
 [autoload]
