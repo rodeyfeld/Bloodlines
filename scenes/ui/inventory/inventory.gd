@@ -65,14 +65,11 @@ func update_calculated():
 		'BonusHealth': 0,
 		'BonusDamage': 0
 	}
-	var counter = 0
 	for inv_slot in equipment_container.get_children():
-
-		counter += 1
 		if inv_slot.item != null:
 			base_dict.BonusHealth += inv_slot.item.item_buffs.BonusHealth
 			base_dict.BonusDamage += inv_slot.item.item_buffs.BonusDamage
-	print(base_dict)
+	
 	calculated_label.text = str("Bonus Health: ", base_dict.BonusHealth, "\n", "Bonus Damage: ", base_dict.BonusDamage)
 
 

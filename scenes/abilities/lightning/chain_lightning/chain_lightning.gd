@@ -22,10 +22,8 @@ func execute(s, target=null):
 		trigger_shot(s.global_position, target)
 		
 func trigger_chain():
-	print(lightning_cdz_target.get_overlapping_bodies())
 	if lightning_cdz_target:
 		if lightning_cdz_target.new_target and coll_point:
-			print(lightning_cdz_target.new_target)
 			trigger_shot(coll_point, lightning_cdz_target.new_target.global_position)
 
 		
@@ -36,7 +34,6 @@ func trigger_shot(orig, pos):
 		if hit.get_collider().get_collision_mask_bit(5):
 			hit.get_collider().status_tags.shocked = true
 			lightning_cdz_target = bolt.cdz
-			print(lightning_cdz_target)
 			coll_point = hit.get_collider().global_position
 			chain_timer.start()
 	#

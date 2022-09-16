@@ -30,7 +30,6 @@ func _ready():
 	refresh_style()
 
 func load_item():
-	print(item)
 	item.load_texture()
 	add_child(item)
 	refresh_style()

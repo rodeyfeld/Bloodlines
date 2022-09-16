@@ -7,11 +7,8 @@
 [node name="walls" parent="." index="0"]
 collision_layer = 32
 
-[node name="Sprite" parent="." index="2"]
-position = Vector2( 499, 120 )
-
-[node name="Sprite2" parent="." index="3"]
-position = Vector2( 512, 508 )
-
 [node name="player" parent="." index="4"]
 position = Vector2( 218, 100 )
+
+[editable path="stairs_back"]
+[editable path="stairs_forward"]

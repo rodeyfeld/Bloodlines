@@ -12,7 +12,6 @@ var inventory_data = item_json_data.inventory_data
 
 	
 func load_texture():
-	print(icon_path)
 	$TextureRect.texture = load(icon_path)
 
 func configure_stacks():
