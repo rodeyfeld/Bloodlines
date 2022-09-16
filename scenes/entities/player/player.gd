@@ -11,6 +11,7 @@ enum {
 	ATTACK
 }
 
+
 var pyroblast = load_ability("fire", "pyroblast")
 var firenova = load_ability("fire", "firenova")
 var sanguinekindling = load_ability("fire", "sanguinekindling")
@@ -21,10 +22,18 @@ var burningbarrage = load_ability("fire", "burningbarrage")
 
 var mouse_pos = Vector2.ZERO
 var state = MOVE
+var inventory = null
 
+onready var inventory_scene = preload("res://scenes/ui/inventory/inventory.tscn")
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
+
+func _ready():
+	inventory = inventory_scene.instance()
+	inventory.visible = false
+#	inventory.global_position = self.position
+	add_child(inventory)
 
 func _physics_process(delta):
 	match state:
@@ -52,6 +61,14 @@ func _physics_process(delta):
 	if Input.is_action_pressed("attack05"):
 		burningbarrage.execute(self)
 		last_ability = 0
+#
+	if Input.is_action_just_pressed("inventory"):
+		if !inventory.visible:
+			inventory.visible = true
+		else:
+			inventory.visible = false
+#		get_tree().change_scene("res://scenes/inventory/inventory.tscn")
+		
 		
 func move_state(delta):
 	var input_vector = Vector2.ZERO

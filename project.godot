@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Bloodlines"
-run/main_scene="res://scenes/inventory/inventory.tscn"
+run/main_scene="res://scenes/main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -31,6 +31,7 @@ item_json_data="*res://scripts/item_json_data.gd"
 [display]
 
 window/stretch/mode="viewport"
+window/stretch/aspect=""
 
 [gui]
 
@@ -85,6 +86,11 @@ attack04={
 attack05={
 "deadzone": 0.5,
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+inventory={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":73,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

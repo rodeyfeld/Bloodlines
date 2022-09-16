@@ -2,13 +2,46 @@
     "Inventory_Items": [
         {
             "ItemCategory": "Gem",
-            "ItemName": "Cerulean Teardrop",
+            "ItemName": "Cerulean Terapan",
             "StackSize": 10,
             "IconPath": "res://assets/items/gems/round-faceted-blue.png",
             "Description": "It shines with an intense light",
             "ItemBuffs": {
                 "BonusHealth": 10,
                 "BonusDamage": 10
+            }
+        },
+        {
+            "ItemCategory": "Gem",
+            "ItemName": "Emerald Almonda",
+            "StackSize": 10,
+            "IconPath": "res://assets/items/gems/oval-faceted-green.png",
+            "Description": "It sparkles mysteriously",
+            "ItemBuffs": {
+                "BonusHealth": 54,
+                "BonusDamage": 22
+            }
+        },
+        {
+            "ItemCategory": "Gem",
+            "ItemName": "Emerald Barannio",
+            "StackSize": 10,
+            "IconPath": "res://assets/items/gems/square-cabochon-green.png",
+            "Description": "It twinkles ominously",
+            "ItemBuffs": {
+                "BonusHealth": 23,
+                "BonusDamage": 11
+            }
+        },        
+        {
+            "ItemCategory": "Gem",
+            "ItemName": "Bianco Teranio",
+            "StackSize": 10,
+            "IconPath": "res://assets/items/gems/round-faceted-white.png",
+            "Description": "A milky white anomaly",
+            "ItemBuffs": {
+                "BonusHealth": 3,
+                "BonusDamage": 1
             }
         }
     ]

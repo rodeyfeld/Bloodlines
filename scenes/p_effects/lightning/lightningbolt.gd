@@ -24,9 +24,10 @@ func configure(o_pos, pos):
 	line2d.points[0] = o_pos
 	line2d.points[1] = coll_point
 	cdz = chain_detection_zone.instance()
-	if raycast.get_collider().get_collision_mask_bit(5):
-		hitbox.position = raycast.get_collider().hurtbox.global_position
-		cdz.unit_stunned = raycast.get_collider()
+	if raycast.get_collider():
+		if raycast.get_collider().get_collision_mask_bit(5):
+			hitbox.position = raycast.get_collider().hurtbox.global_position
+			cdz.unit_stunned = raycast.get_collider()
 	add_child(cdz)
 	cdz.global_position = coll_point
 #	print(cdz.position)
