@@ -13,4 +13,5 @@ position = Vector2( 248, 220 )
 [node name="player" parent="." index="4"]
 position = Vector2( 218, 100 )
 
+[editable path="stairs_back"]
 [editable path="stairs_forward"]

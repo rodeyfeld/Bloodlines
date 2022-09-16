@@ -1,4 +1,4 @@
-extends Sprite
+extends Area2D
 #
 #var stairs_forward = "res://assets/tilemaps/catacombs/stairs_up.png"
 #var stairs_backward= "res://assets/tilemaps/catacombs/stairs_down.png"
