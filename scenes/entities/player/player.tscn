@@ -18,66 +18,66 @@
 [sub_resource type="CapsuleShape2D" id=1]
 height = 8.0
 
-[sub_resource type="AnimationNodeAnimation" id=87]
-animation = "BloodflameMageDownIdle"
+[sub_resource type="AnimationNodeAnimation" id=106]
+animation = "down_idle"
 
-[sub_resource type="AnimationNodeAnimation" id=88]
-animation = "BloodflameMageRightIdle"
+[sub_resource type="AnimationNodeAnimation" id=99]
+animation = "right_idle"
 
-[sub_resource type="AnimationNodeAnimation" id=89]
-animation = "BloodflameMageUpIdle"
+[sub_resource type="AnimationNodeAnimation" id=100]
+animation = "up_idle"
 
-[sub_resource type="AnimationNodeAnimation" id=90]
-animation = "BloodflameMageLeftIdle"
+[sub_resource type="AnimationNodeAnimation" id=101]
+animation = "left_idle"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=91]
-blend_point_0/node = SubResource( 87 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=107]
+blend_point_0/node = SubResource( 106 )
 blend_point_0/pos = Vector2( 0, 1.1 )
-blend_point_1/node = SubResource( 88 )
+blend_point_1/node = SubResource( 99 )
 blend_point_1/pos = Vector2( 1, 0 )
-blend_point_2/node = SubResource( 89 )
+blend_point_2/node = SubResource( 100 )
 blend_point_2/pos = Vector2( 0, -1.1 )
-blend_point_3/node = SubResource( 90 )
+blend_point_3/node = SubResource( 101 )
 blend_point_3/pos = Vector2( -1, 0 )
 min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id=92]
-animation = "BloodflameMageDownRun"
+[sub_resource type="AnimationNodeAnimation" id=102]
+animation = "down_run"
 
-[sub_resource type="AnimationNodeAnimation" id=93]
-animation = "BloodflameMageRightRun"
+[sub_resource type="AnimationNodeAnimation" id=103]
+animation = "right_run"
 
-[sub_resource type="AnimationNodeAnimation" id=94]
-animation = "BloodflameMageUpRun"
+[sub_resource type="AnimationNodeAnimation" id=104]
+animation = "up_run"
 
-[sub_resource type="AnimationNodeAnimation" id=95]
-animation = "BloodflameMageLeftRun"
+[sub_resource type="AnimationNodeAnimation" id=105]
+animation = "left_run"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=2]
-blend_point_0/node = SubResource( 92 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=108]
+blend_point_0/node = SubResource( 102 )
 blend_point_0/pos = Vector2( 0, 1.1 )
-blend_point_1/node = SubResource( 93 )
+blend_point_1/node = SubResource( 103 )
 blend_point_1/pos = Vector2( 1, 0 )
-blend_point_2/node = SubResource( 94 )
+blend_point_2/node = SubResource( 104 )
 blend_point_2/pos = Vector2( 0, -1.1 )
-blend_point_3/node = SubResource( 95 )
+blend_point_3/node = SubResource( 105 )
 blend_point_3/pos = Vector2( -1, 0 )
 min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=96]
+[sub_resource type="AnimationNodeStateMachineTransition" id=109]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=97]
+[sub_resource type="AnimationNodeStateMachineTransition" id=110]
 
-[sub_resource type="AnimationNodeStateMachine" id=3]
-states/Idle/node = SubResource( 91 )
-states/Idle/position = Vector2( 631, 64 )
-states/Run/node = SubResource( 2 )
+[sub_resource type="AnimationNodeStateMachine" id=115]
+states/Idle/node = SubResource( 107 )
+states/Idle/position = Vector2( 627, 64 )
+states/Run/node = SubResource( 108 )
 states/Run/position = Vector2( 392, 64 )
-transitions = [ "Run", "Idle", SubResource( 96 ), "Idle", "Run", SubResource( 97 ) ]
+transitions = [ "Run", "Idle", SubResource( 109 ), "Idle", "Run", SubResource( 110 ) ]
 start_node = "Idle"
 graph_offset = Vector2( -46, -40 )
 
@@ -694,22 +694,22 @@ flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 240, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=99]
+[sub_resource type="AtlasTexture" id=111]
 flags = 4
 atlas = ExtResource( 14 )
 region = Rect2( 0, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=100]
+[sub_resource type="AtlasTexture" id=112]
 flags = 4
 atlas = ExtResource( 14 )
 region = Rect2( 48, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=101]
+[sub_resource type="AtlasTexture" id=113]
 flags = 4
 atlas = ExtResource( 14 )
 region = Rect2( 96, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=102]
+[sub_resource type="AtlasTexture" id=114]
 flags = 4
 atlas = ExtResource( 14 )
 region = Rect2( 144, 0, 48, 48 )
@@ -871,7 +871,7 @@ animations = [ {
 "name": "BloodflameMageRightIdle",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 99 ), SubResource( 100 ), SubResource( 101 ), SubResource( 102 ) ],
+"frames": [ SubResource( 111 ), SubResource( 112 ), SubResource( 113 ), SubResource( 114 ) ],
 "loop": true,
 "name": "BloodflameMageRightJump",
 "speed": 5.0
@@ -907,7 +907,7 @@ MAX_SPEED = 200
 shape = SubResource( 1 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 3 )
+tree_root = SubResource( 115 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 4 )

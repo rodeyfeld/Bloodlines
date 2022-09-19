@@ -12,6 +12,12 @@ export var ACCELERATION = 300
 export var MAX_SPEED = 100
 export var FRICTION = 200
 
+enum {
+	IDLE,
+	WANDER,
+	CHASE
+} 
+var state = CHASE
 
 onready var stats = $Stats
 #onready var status_tags = $StatusTags
@@ -32,7 +38,11 @@ func _ready():
 	healthbar.max_value = stats.max_health
 #	chase()
 
-func _physics_process(_delta):
+func _physics_process(delta):
+	
+	match state:
+		IDLE:
+			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	if enemy_detection_zone.player:
 		target = enemy_detection_zone.player
 		chase()

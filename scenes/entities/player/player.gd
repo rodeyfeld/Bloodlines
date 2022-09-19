@@ -30,6 +30,7 @@ onready var trail_scene = preload("res://scenes/entities/player/trail.tscn")
 onready var trail_timer = $trail_timer
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
+onready var collision_shape2d = $CollisionShape2D
 onready var animationState = animationTree.get("parameters/playback")
 
 func _ready():
@@ -77,7 +78,8 @@ func add_trail():
 	var trail = trail_scene.instance()
 	trail.player = self
 	trail.position = self.position
-	get_node("/root").add_child(trail)
+#	get_node("/root").add_child(trail)
+	get_parent().add_child(trail)
 	target_trail.push_front(trail)
 		
 
@@ -88,10 +90,6 @@ func move_state(delta):
 	input_vector = input_vector.normalized()
 	var look_at = self.get_global_mouse_position()
 	var _direction = (look_at  - self.position);
-	# a vector pointing from the sprite to the mouse would be calculated like this.
-	#your vector is actually pointing in the opposite direction 
-	# also no need to normalize the vector as that won't affect the angle, just the length.
-#		var new_angle =  atan2(_direction.y, _direction.x)
 
 
 	if input_vector != Vector2.ZERO:
