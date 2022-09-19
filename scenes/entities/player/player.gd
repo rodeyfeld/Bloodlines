@@ -23,8 +23,11 @@ var burningbarrage = load_ability("fire", "burningbarrage")
 var mouse_pos = Vector2.ZERO
 var state = MOVE
 var inventory = null
+var target_trail = []
 
 onready var inventory_scene = preload("res://scenes/ui/inventory/inventory.tscn")
+onready var trail_scene = preload("res://scenes/entities/player/trail.tscn")
+onready var trail_timer = $trail_timer
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
@@ -32,8 +35,9 @@ onready var animationState = animationTree.get("parameters/playback")
 func _ready():
 	inventory = inventory_scene.instance()
 	inventory.visible = false
-#	inventory.global_position = self.position
-	add_child(inventory)
+#	add_child(inventory)
+	
+	trail_timer.connect("timeout", self, "add_trail")
 
 func _physics_process(delta):
 	match state:
@@ -69,7 +73,14 @@ func _physics_process(delta):
 			inventory.visible = false
 #		get_tree().change_scene("res://scenes/inventory/inventory.tscn")
 		
+func add_trail():
+	var trail = trail_scene.instance()
+	trail.player = self
+	trail.position = self.position
+	get_node("/root").add_child(trail)
+	target_trail.push_front(trail)
 		
+
 func move_state(delta):
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")

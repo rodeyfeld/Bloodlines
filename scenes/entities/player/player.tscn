@@ -897,8 +897,9 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[node name="player" type="KinematicBody2D"]
+[node name="player" type="KinematicBody2D" groups=["player"]]
 collision_layer = 2
+collision_mask = 32
 script = ExtResource( 1 )
 MAX_SPEED = 200
 
@@ -936,3 +937,7 @@ animation = "BloodflameMageDownRun"
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 0.5, 0.5 )
+
+[node name="trail_timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true

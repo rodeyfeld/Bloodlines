@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://scenes/entities/enemies/skeleton/skeleton.gd" type="Script" id=1]
 [ext_resource path="res://assets/entities/enemies/skeleton/Skeleton Idle.png" type="Texture" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://assets/entities/enemies/skeleton/Skeleton Dead.png" type="Texture" id=4]
 [ext_resource path="res://scenes/overlap/Hurtbox.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/attributes/Stats.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/overlap/EnemyDetectionZone.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/attributes/Healthbar.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/attributes/StatusTags.tscn" type="PackedScene" id=9]
 
@@ -226,9 +225,6 @@ height = 18.0
 radius = 13.0
 height = 6.0
 
-[sub_resource type="CircleShape2D" id=42]
-radius = 136.0
-
 [node name="Entity" type="KinematicBody2D"]
 collision_layer = 16
 collision_mask = 48
@@ -238,7 +234,7 @@ script = ExtResource( 1 )
 position = Vector2( 3, -4 )
 frames = SubResource( 24 )
 animation = "idle"
-frame = 2
+frame = 6
 playing = true
 
 [node name="Healthbar" parent="AnimatedSprite" instance=ExtResource( 8 )]
@@ -261,25 +257,9 @@ shape = SubResource( 41 )
 [node name="Stats" parent="." instance=ExtResource( 6 )]
 max_health = 100
 
-[node name="EnemyDetectionZone" parent="." instance=ExtResource( 7 )]
-visible = false
-
-[node name="CollisionShape2D" parent="EnemyDetectionZone" index="0"]
-modulate = Color( 1, 0, 0, 0.415686 )
-shape = SubResource( 42 )
-
-[node name="DetectedTimer" parent="EnemyDetectionZone" index="1"]
-wait_time = 3.0
-autostart = true
-
-[node name="WanderTimer" parent="EnemyDetectionZone" index="2"]
-wait_time = 3.0
-
 [node name="StatusTags" parent="." instance=ExtResource( 9 )]
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
-[connection signal="timeout" from="EnemyDetectionZone/DetectedTimer" to="." method="_on_DetectedTimer_timeout"]
 
 [editable path="Hurtbox"]
-[editable path="EnemyDetectionZone"]

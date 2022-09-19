@@ -5,12 +5,13 @@ extends Area2D
 
 var to_scene = null
 onready var timer: Timer = $Timer
+onready var player_spawn_position = $player_spawn_position
 
 func _ready():
 	self.monitoring = true
 	self.monitorable = true
 
-func _on_Area2D_body_entered(body):
+func _on_Area2D_body_entered(_body):
 	set_deferred("monitoring", false)
 	timer.start()
 	

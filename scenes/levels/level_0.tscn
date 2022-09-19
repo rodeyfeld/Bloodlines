@@ -4,11 +4,8 @@
 
 [node name="level0" instance=ExtResource( 1 )]
 
-[node name="walls" parent="." index="0"]
-collision_layer = 32
-
-[node name="player" parent="." index="4"]
-position = Vector2( 218, 100 )
+[node name="stairs_forward" parent="." index="3"]
+position = Vector2( 251, 135 )
 
 [editable path="stairs_back"]
 [editable path="stairs_forward"]
