@@ -1,8 +1,6 @@
-extends ColorRect
+extends CanvasLayer
 
-onready var animation_player := $animation_player
-
-
+onready var animation_player := $level_transition/animation_player
 
 func transition_in():
 	animation_player.play_backwards("Fade")
@@ -12,8 +10,10 @@ func transition_out():
 
 
 func _on_animation_player_animation_finished(_anim_name):
-	print("fini anim")
+#	print("fini anim")
+	pass
 
 
 func _on_animation_player_animation_started(anim_name):
-	print("animat started")
+#	print("animat started")
+	pass

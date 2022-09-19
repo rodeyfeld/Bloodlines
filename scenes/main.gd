@@ -25,9 +25,17 @@ func _ready():
 #	curr_scene = new_scene
 #	curr_scene.stairs_forward.area2d.connect("body_entered", self, "transition_level", [])
 #
+
 func handle_level_backward(_area):
-	curr_level.remove_child(player)
 	var next_level = curr_level.stairs_backward.to_scene
+	
+	# Start transition animation
+	var transition = transition_scene.instance()
+	add_child(transition)
+	transition.transition_out()
+	yield(transition.animation_player, "animation_finished")
+	curr_level.remove_child(player)
+	
 	call_deferred("remove_child", curr_level)
 	yield(get_tree(), "idle_frame")
 	call_deferred("add_child", next_level)
@@ -35,11 +43,13 @@ func handle_level_backward(_area):
 	curr_level = next_level
 	curr_level.add_child(player)
 	player.global_position = curr_level.stairs_forward.player_spawn_position.global_position
-	print(curr_level.id)
+	transition.transition_in()
+	yield(transition.animation_player, "animation_finished")
+	transition.queue_free()
+	print("Backward: ", curr_level.id)
 	
 func handle_level_forward(_area):
 	# Doing this check twice because the item isn't added yet
-	curr_level.remove_child(player)
 	var is_new_level = false
 	var next_level = curr_level.stairs_forward.to_scene
 	if next_level == null:
@@ -50,11 +60,12 @@ func handle_level_forward(_area):
 	# Start transition animation
 	var transition = transition_scene.instance()
 	add_child(transition)
-	curr_level.visible = false
-	next_level.visible = false
-	transition.transition_in()
+	transition.transition_out()
 	yield(transition.animation_player, "animation_finished")
-	yield(get_tree(), "idle_frame")	
+	
+	# Faded to black, start operations
+	curr_level.remove_child(player)
+#	yield(get_tree(), "idle_frame")	
 	# Call for old scene to be removed
 	call_deferred("remove_child", curr_level)
 	yield(get_tree(), "idle_frame")	
@@ -62,10 +73,7 @@ func handle_level_forward(_area):
 	call_deferred("add_child", next_level)
 	yield(get_tree(), "idle_frame")
 	# Start transition back animation
-	transition.transition_out()
-	yield(transition.animation_player, "animation_finished")
-	curr_level.visible = true
-	next_level.visible = true
+
 	if is_new_level:
 		next_level.stairs_backward.connect("body_entered", self, "handle_level_backward")
 		next_level.stairs_forward.connect("body_entered", self, "handle_level_forward")
@@ -74,7 +82,11 @@ func handle_level_forward(_area):
 	curr_level = next_level
 	curr_level.add_child(player)
 	player.global_position = curr_level.stairs_backward.player_spawn_position.global_position
-	print(curr_level.id)
+	transition.transition_in()
+	yield(transition.animation_player, "animation_finished")
+	transition.queue_free()
+	print("Forward: ", curr_level.id)
+
 
 func instance_new_level():
 	return level_templates[randi() % level_templates.size()].instance()
