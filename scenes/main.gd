@@ -2,11 +2,11 @@ extends Node
 
 
 var level_0 = preload("res://scenes/levels/level_0.tscn")
-var level_2 = preload("res://scenes/levels/level_2.tscn")
+#var level_2 = preload("res://scenes/levels/level_2.tscn")
 var player_scene = preload("res://scenes/entities/player/player.tscn")
 var transition_scene = preload("res://scenes/levels/transitions/level_transition.tscn")
 #var start_screen = preload("res://scenes/ui/start_screen/start_screen.tscn")
-var level_templates = [level_2]
+var level_templates = [level_0]
 var level_count = 0
 var player
 var curr_level
@@ -14,7 +14,7 @@ var curr_level
 
 func _ready():
 	player = player_scene.instance()
-	curr_level = level_2.instance()
+	curr_level = level_0.instance()
 #	add_child(curr_level)
 	call_deferred("add_child", curr_level)
 	yield(get_tree(), "idle_frame")	
@@ -35,7 +35,6 @@ func handle_level_backward(_area):
 	
 	player.collision_shape2d.set_deferred("disabled", true)
 	yield(get_tree(), "idle_frame")
-	print(player.collision_shape2d.disabled)
 	var next_level = curr_level.stairs_backward.to_scene
 	# Start transition animation
 	var transition = transition_scene.instance()
@@ -56,13 +55,11 @@ func handle_level_backward(_area):
 	yield(get_tree(), "idle_frame")
 	transition.transition_in()
 	yield(transition.animation_player, "animation_finished")
-	print(player.collision_shape2d.disabled)
 	transition.queue_free()
 	player.collision_shape2d.set_deferred("disabled", false)
 	print("Backward: ", curr_level.id)
 	
 func handle_level_forward(_area):
-	print("H")
 	# Doing this check twice because the item isn't added yet
 	player.collision_shape2d.set_deferred("disabled", true)
 	var is_new_level = false

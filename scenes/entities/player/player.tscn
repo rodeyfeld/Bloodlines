@@ -18,68 +18,67 @@
 [sub_resource type="CapsuleShape2D" id=1]
 height = 8.0
 
-[sub_resource type="AnimationNodeAnimation" id=106]
-animation = "down_idle"
+[sub_resource type="AnimationNodeAnimation" id=117]
+animation = "BloodflameMageDownIdle"
 
-[sub_resource type="AnimationNodeAnimation" id=99]
-animation = "right_idle"
+[sub_resource type="AnimationNodeAnimation" id=118]
+animation = "BloodflameMageRightIdle"
 
-[sub_resource type="AnimationNodeAnimation" id=100]
-animation = "up_idle"
+[sub_resource type="AnimationNodeAnimation" id=119]
+animation = "BloodflameMageUpIdle"
 
-[sub_resource type="AnimationNodeAnimation" id=101]
-animation = "left_idle"
+[sub_resource type="AnimationNodeAnimation" id=120]
+animation = "BloodflameMageLeftIdle"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=107]
-blend_point_0/node = SubResource( 106 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=115]
+blend_point_0/node = SubResource( 117 )
 blend_point_0/pos = Vector2( 0, 1.1 )
-blend_point_1/node = SubResource( 99 )
+blend_point_1/node = SubResource( 118 )
 blend_point_1/pos = Vector2( 1, 0 )
-blend_point_2/node = SubResource( 100 )
+blend_point_2/node = SubResource( 119 )
 blend_point_2/pos = Vector2( 0, -1.1 )
-blend_point_3/node = SubResource( 101 )
+blend_point_3/node = SubResource( 120 )
 blend_point_3/pos = Vector2( -1, 0 )
 min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id=102]
-animation = "down_run"
+[sub_resource type="AnimationNodeAnimation" id=121]
+animation = "BloodflameMageDownRun"
 
-[sub_resource type="AnimationNodeAnimation" id=103]
-animation = "right_run"
+[sub_resource type="AnimationNodeAnimation" id=122]
+animation = "BloodflameMageRightRun"
 
-[sub_resource type="AnimationNodeAnimation" id=104]
-animation = "up_run"
+[sub_resource type="AnimationNodeAnimation" id=123]
+animation = "BloodflameMageUpRun"
 
-[sub_resource type="AnimationNodeAnimation" id=105]
-animation = "left_run"
+[sub_resource type="AnimationNodeAnimation" id=128]
+animation = "BloodflameMageLeftRun"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=108]
-blend_point_0/node = SubResource( 102 )
+[sub_resource type="AnimationNodeBlendSpace2D" id=125]
+blend_point_0/node = SubResource( 121 )
 blend_point_0/pos = Vector2( 0, 1.1 )
-blend_point_1/node = SubResource( 103 )
+blend_point_1/node = SubResource( 122 )
 blend_point_1/pos = Vector2( 1, 0 )
-blend_point_2/node = SubResource( 104 )
+blend_point_2/node = SubResource( 123 )
 blend_point_2/pos = Vector2( 0, -1.1 )
-blend_point_3/node = SubResource( 105 )
+blend_point_3/node = SubResource( 128 )
 blend_point_3/pos = Vector2( -1, 0 )
 min_space = Vector2( -1, -1.1 )
 max_space = Vector2( 1, 1.1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=109]
+[sub_resource type="AnimationNodeStateMachineTransition" id=126]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=110]
+[sub_resource type="AnimationNodeStateMachineTransition" id=127]
 
-[sub_resource type="AnimationNodeStateMachine" id=115]
-states/Idle/node = SubResource( 107 )
-states/Idle/position = Vector2( 627, 64 )
-states/Run/node = SubResource( 108 )
-states/Run/position = Vector2( 392, 64 )
-transitions = [ "Run", "Idle", SubResource( 109 ), "Idle", "Run", SubResource( 110 ) ]
+[sub_resource type="AnimationNodeStateMachine" id=116]
+states/Idle/node = SubResource( 115 )
+states/Idle/position = Vector2( 528, 62 )
+states/Run/node = SubResource( 125 )
+states/Run/position = Vector2( 791, 68 )
+transitions = [ "Idle", "Run", SubResource( 126 ), "Run", "Idle", SubResource( 127 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -46, -40 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=4]
 
@@ -907,12 +906,12 @@ MAX_SPEED = 200
 shape = SubResource( 1 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 115 )
+tree_root = SubResource( 116 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 4 )
 parameters/Idle/blend_position = Vector2( 0, 0 )
-parameters/Run/blend_position = Vector2( 0, 0 )
+parameters/Run/blend_position = Vector2( -0.000966191, -0.00635839 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/BloodflameMageDownAttack01 = SubResource( 5 )

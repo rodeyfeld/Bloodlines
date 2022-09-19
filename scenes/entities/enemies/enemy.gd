@@ -30,20 +30,27 @@ onready var enemy_detection_zone = $enemy_detection_zone
 #onready var enemy_detection_wander_timer = $EnemyDetectionZone/WanderTimer
 onready var raycast_to_trail = $raycast_to_trail
 onready var chase_timer = $chase_timer
-
+onready var animation_tree = $animation_tree
+onready var animation_state = animation_tree.get("parameters/playback")
 var raycast_adjustments = [Vector2(0, -10), Vector2(0, 10), Vector2(10, 0), Vector2(-10, 0)]
 
 func _ready():
 	healthbar.min_value = 0
 	healthbar.max_value = stats.max_health
+	animation_tree.active = true
 #	chase()
 
 func _physics_process(delta):
 	
-	match state:
-		IDLE:
-			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+#	match state:
+#		IDLE:
+#			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	if enemy_detection_zone.player:
+		var input_vector = velocity.normalized()
+		print(input_vector)
+		
+		animation_tree.set("parameters/Run/blend_position", input_vector)
+		animation_state.travel("Run")
 		target = enemy_detection_zone.player
 		chase()
 	else:
