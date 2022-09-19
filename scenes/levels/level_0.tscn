@@ -6,10 +6,10 @@
 [node name="level0" instance=ExtResource( 1 )]
 
 [node name="stairs_forward" parent="." index="3"]
-position = Vector2( 251, 135 )
+position = Vector2( 889, 514 )
 
 [node name="skeleton_grunt2" parent="." index="5" instance=ExtResource( 2 )]
-position = Vector2( 385, 319 )
+position = Vector2( 543, 388 )
 
 [editable path="stairs_back"]
 [editable path="stairs_forward"]

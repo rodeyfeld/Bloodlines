@@ -21,6 +21,7 @@ func _on_enemy_detection_zone_body_entered(body):
 
 func _on_detected_timer_timeout():
 	if !player_in_zone:
+		print("player not in zone")
 		player = null
 	
 func _on_enemy_detection_zone_body_exited(body):

@@ -57,9 +57,6 @@ cast_to = Vector2( 100, 0 )
 collision_mask = 32
 collide_with_areas = true
 
-[node name="chase_timer" type="Timer" parent="."]
-one_shot = true
-
 [node name="enemy_detection_zone" parent="." instance=ExtResource( 6 )]
 
 [node name="CollisionShape2D" parent="enemy_detection_zone" index="0"]
@@ -71,10 +68,16 @@ shape = SubResource( 16 )
 tree_root = SubResource( 113 )
 parameters/playback = SubResource( 112 )
 
+[node name="wander_timer" type="Timer" parent="."]
+one_shot = true
+
 [node name="idle_timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
+[connection signal="timeout" from="idle_timer" to="." method="_on_idle_timer_timeout"]
 
 [editable path="Hurtbox"]
 [editable path="enemy_detection_zone"]

@@ -28,7 +28,7 @@ onready var aoe_raycast = $Hurtbox/RayCast2D
 onready var enemy_detection_zone = $enemy_detection_zone
 onready var idle_timer = $idle_timer
 onready var raycast_to_trail = $raycast_to_trail
-onready var chase_timer = $chase_timer
+onready var wander_timer = $wander_timer
 onready var animation_tree = $animation_tree
 onready var animation_state = animation_tree.get("parameters/playback")
 var raycast_adjustments = [Vector2(0, -10), Vector2(0, 10), Vector2(10, 0), Vector2(-10, 0)]
@@ -42,24 +42,38 @@ func _ready():
 func _physics_process(delta):
 	
 	animation_tree.set("parameters/Run/blend_position", velocity.normalized())
-	print(state, velocity)
+#	print(state)
 	match state:
 		IDLE:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 			animation_state.travel("Idle")
 			look_for_player()
+			print("time left ", idle_timer.time_left)
+			if idle_timer.time_left <= 0:
+				state = WANDER
 		CHASE:
+			wander_timer.stop()
 			animation_state.travel("Run")
 			chase_target()
+#			print(target)
 			if !target:
+				print(target)
+				print("start wanderin")
 				state = IDLE
-				
-
+				print("starting timer")
+				idle_timer.start()
+			else:
+				idle_timer.stop()
+		WANDER:
+			print("WANDER")
+			animation_state.travel("Run")
+			if wander_timer.time_left <= 0:
+				wander()
+	move_and_slide(velocity * MAX_SPEED)
 		
-	var _val = move_and_slide(velocity * MAX_SPEED)
-
 
 func look_for_player():
+	print(enemy_detection_zone.is_player_visible())
 	if enemy_detection_zone.is_player_visible():
 		state = CHASE
 
@@ -67,18 +81,19 @@ func chase_target():
 	if enemy_detection_zone.player:
 		target = enemy_detection_zone.player
 		var cast_to_player = true
+		# Try to find player
 		for raycast_adjustment in raycast_adjustments:
 			raycast_to_trail.cast_to = (target.position + raycast_adjustment) - self.position
 			raycast_to_trail.force_raycast_update()
 			if raycast_to_trail.is_colliding():
 				cast_to_player = false
 				break
-	#		if !raycast_to_trail.is_colliding():
-	#			print("chasing player")
-	#			self.velocity = raycast_to_trail.cast_to.normalized()
+		# We can see player, set direction to move toward it
 		if cast_to_player:
 			self.velocity = (target.position - self.position).normalized()
 			return
+		
+		# Otherwise we check each trail for a direction
 		for trail in target.target_trail:
 			var cast_to_trail = true
 			for raycast_adjustment in raycast_adjustments:
@@ -92,8 +107,12 @@ func chase_target():
 				break
 	else:
 		target = null
-	print(velocity)
-	
+
+func wander():
+	randomize()
+	self.velocity = Vector2(rand_range(-0.2, 0.2), rand_range(-0.2, 0.2))
+	wander_timer.start()
+		
 # For AOE ability checks	
 func check_raycast(area):
 	if area.area_raycast_check:
@@ -124,3 +143,7 @@ func _on_Stats_no_health():
 	ds.position.x = self.position.x
 	ds.position.y = self.position.y
 	get_node("/root").add_child(ds)
+
+
+func _on_idle_timer_timeout():
+	state = IDLE
