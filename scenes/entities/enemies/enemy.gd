@@ -24,10 +24,9 @@ onready var stats = $Stats
 onready var hurtbox = $Hurtbox
 onready var sprite = $AnimatedSprite
 onready var healthbar = $AnimatedSprite/Healthbar
-onready var raycast = $Hurtbox/RayCast2D
+onready var aoe_raycast = $Hurtbox/RayCast2D
 onready var enemy_detection_zone = $enemy_detection_zone
-#onready var enemy_detection_not_detected_timer = $EnemyDetectionZone/DetectedTimer
-#onready var enemy_detection_wander_timer = $EnemyDetectionZone/WanderTimer
+onready var idle_timer = $idle_timer
 onready var raycast_to_trail = $raycast_to_trail
 onready var chase_timer = $chase_timer
 onready var animation_tree = $animation_tree
@@ -42,88 +41,70 @@ func _ready():
 
 func _physics_process(delta):
 	
-#	match state:
-#		IDLE:
-#			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
-	if enemy_detection_zone.player:
-		var input_vector = velocity.normalized()
-		print(input_vector)
+	animation_tree.set("parameters/Run/blend_position", velocity.normalized())
+	print(state, velocity)
+	match state:
+		IDLE:
+			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+			animation_state.travel("Idle")
+			look_for_player()
+		CHASE:
+			animation_state.travel("Run")
+			chase_target()
+			if !target:
+				state = IDLE
+				
+
 		
-		animation_tree.set("parameters/Run/blend_position", input_vector)
-		animation_state.travel("Run")
-		target = enemy_detection_zone.player
-		chase()
-	else:
-		velocity = Vector2.ZERO
 	var _val = move_and_slide(velocity * MAX_SPEED)
-	
-func chase():
-	var cast_to_player = true
-	for raycast_adjustment in raycast_adjustments:
-		raycast_to_trail.cast_to = (target.position + raycast_adjustment) - self.position
-		raycast_to_trail.force_raycast_update()
-		if raycast_to_trail.is_colliding():
-			cast_to_player = false
-			break
-#		if !raycast_to_trail.is_colliding():
-#			print("chasing player")
-#			self.velocity = raycast_to_trail.cast_to.normalized()
-	if cast_to_player:
-		self.velocity = (target.position - self.position).normalized()
-		return
-	for trail in target.target_trail:
-		var cast_to_trail = true
+
+
+func look_for_player():
+	if enemy_detection_zone.is_player_visible():
+		state = CHASE
+
+func chase_target():
+	if enemy_detection_zone.player:
+		target = enemy_detection_zone.player
+		var cast_to_player = true
 		for raycast_adjustment in raycast_adjustments:
-			raycast_to_trail.cast_to = (trail.position + raycast_adjustment) - self.position
+			raycast_to_trail.cast_to = (target.position + raycast_adjustment) - self.position
 			raycast_to_trail.force_raycast_update()
 			if raycast_to_trail.is_colliding():
-				cast_to_trail = false
+				cast_to_player = false
 				break
-		if cast_to_trail:
-			self.velocity = (trail.position - self.position).normalized()
-			break
-		
-#			if !raycast_to_trail.is_colliding():
-#				print(raycast_to_trail.get_collider())
-#
-#				print("chasing scent", trail)
-#				self.velocity = raycast_to_trail.cast_to.normalized()
-#				break
+	#		if !raycast_to_trail.is_colliding():
+	#			print("chasing player")
+	#			self.velocity = raycast_to_trail.cast_to.normalized()
+		if cast_to_player:
+			self.velocity = (target.position - self.position).normalized()
+			return
+		for trail in target.target_trail:
+			var cast_to_trail = true
+			for raycast_adjustment in raycast_adjustments:
+				raycast_to_trail.cast_to = (trail.position + raycast_adjustment) - self.position
+				raycast_to_trail.force_raycast_update()
+				if raycast_to_trail.is_colliding():
+					cast_to_trail = false
+					break
+			if cast_to_trail:
+				self.velocity = (trail.position - self.position).normalized()
+				break
+	else:
+		target = null
+	print(velocity)
 	
-		
-
-#func navigate():
-#	if path.size() > 0:
-#		velocity = global_position.direction_to(path[1]) * MAX_SPEED
-#
-#		# If reached destination, remove front point
-#		if global_position == path[0]:
-#			path.pop_front()
-#
-#func generate_path():
-#	if level_navigation != null and player != null:
-#		path = level_navigation.get_simple_path(global_position, player.global_position, true)
-#		line2d.points = path
-#
-#func is_player_in_los() -> bool:
-#	var collider = raycast_los.get_collider()
-##	print(collider)
-#	if collider and collider.is_in_group("player"):
-#		player_located = true
-#		chase_timer.start()
-#		print("SPOT")
-#		return true
-#	return false
-
 # For AOE ability checks	
 func check_raycast(area):
 	if area.area_raycast_check:
-		raycast.cast_to = raycast.to_local(area.global_position)
-		raycast.enabled = true
-		raycast.force_raycast_update()
-		if raycast.is_colliding():
+		aoe_raycast.cast_to = aoe_raycast.to_local(area.global_position)
+		aoe_raycast.enabled = true
+		aoe_raycast.force_raycast_update()
+		if aoe_raycast.is_colliding():
 			return true
 	return false
+	
+
 
 func _on_Hurtbox_area_entered(area):
 	var disable_dmg = check_raycast(area)

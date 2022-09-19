@@ -11,10 +11,12 @@ script = ExtResource( 1 )
 modulate = Color( 1, 0.509804, 0.509804, 1 )
 
 [node name="detected_timer" type="Timer" parent="."]
-wait_time = 8.0
+wait_time = 3.0
 one_shot = true
 
-[node name="WanderTimer" type="Timer" parent="."]
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 32
 
 [connection signal="body_entered" from="." to="." method="_on_enemy_detection_zone_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_enemy_detection_zone_body_exited"]
 [connection signal="timeout" from="detected_timer" to="." method="_on_detected_timer_timeout"]

@@ -615,13 +615,18 @@ start_node = "Run"
 [sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 
 [node name="skeleton_grunt2" instance=ExtResource( 2 )]
+scale = Vector2( 1, 0.991273 )
 
 [node name="AnimatedSprite" parent="." index="2"]
 frames = SubResource( 74 )
 animation = "run_down"
 
-[node name="enemy_detection_zone" parent="." index="6"]
+[node name="Healthbar" parent="AnimatedSprite" index="0"]
 visible = false
+margin_left = -67.0
+margin_top = 79.0
+margin_right = -3.0
+margin_bottom = 143.0
 
 [node name="animation_player" parent="." index="7"]
 anims/RESET = SubResource( 60 )

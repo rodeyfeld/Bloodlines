@@ -9,7 +9,7 @@
 position = Vector2( 251, 135 )
 
 [node name="skeleton_grunt2" parent="." index="5" instance=ExtResource( 2 )]
-position = Vector2( 259, 306 )
+position = Vector2( 385, 319 )
 
 [editable path="stairs_back"]
 [editable path="stairs_forward"]

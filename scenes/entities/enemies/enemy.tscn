@@ -33,7 +33,7 @@ collision_layer = 8
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 shape = SubResource( 15 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="wall_collision" type="CollisionShape2D" parent="."]
 shape = SubResource( 14 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -70,6 +70,8 @@ shape = SubResource( 16 )
 [node name="animation_tree" type="AnimationTree" parent="."]
 tree_root = SubResource( 113 )
 parameters/playback = SubResource( 112 )
+
+[node name="idle_timer" type="Timer" parent="."]
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
