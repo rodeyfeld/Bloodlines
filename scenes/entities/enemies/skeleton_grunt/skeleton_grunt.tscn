@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=2]
+[gd_scene load_steps=119 format=2]
 
 [ext_resource path="res://scenes/entities/enemies/enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/entities/enemies/lucifer_enemies/skeleton_grunt/Left/Png/SkeletonWithSwordLefttRun.png" type="Texture" id=2]
@@ -478,6 +478,9 @@ animations = [ {
 "speed": 15.0
 } ]
 
+[sub_resource type="CircleShape2D" id=105]
+radius = 161.012
+
 [sub_resource type="Animation" id=84]
 resource_name = "down_idle"
 length = 0.6
@@ -625,15 +628,15 @@ start_node = "Idle"
 [node name="skeleton_grunt" type="Node2D"]
 
 [node name="enemy" parent="." instance=ExtResource( 1 )]
-scale = Vector2( 1, 1 )
 
 [node name="AnimatedSprite" parent="enemy" index="2"]
-scale = Vector2( 1, 1 )
 frames = SubResource( 7 )
 animation = "left_idle"
-playing = false
 
-[node name="animation_player" parent="enemy" index="7"]
+[node name="CollisionShape2D" parent="enemy/enemy_detection_zone" index="0"]
+shape = SubResource( 105 )
+
+[node name="animation_player" parent="enemy" index="6"]
 anims/RESET = ExtResource( 14 )
 anims/down_idle = SubResource( 84 )
 anims/down_run = SubResource( 85 )
@@ -644,7 +647,7 @@ anims/right_run = SubResource( 89 )
 anims/up_idle = SubResource( 90 )
 anims/up_run = SubResource( 91 )
 
-[node name="animation_tree" parent="enemy" index="8"]
+[node name="animation_tree" parent="enemy" index="7"]
 tree_root = SubResource( 82 )
 anim_player = NodePath("../animation_player")
 active = true

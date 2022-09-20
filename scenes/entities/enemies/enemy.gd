@@ -30,6 +30,7 @@ onready var idle_timer = $idle_timer
 onready var raycast_to_trail = $raycast_to_trail
 onready var wander_timer = $wander_timer
 onready var animation_tree = $animation_tree
+onready var soft_body_collision = $soft_body_collision
 onready var animation_state = animation_tree.get("parameters/playback")
 var raycast_adjustments = [Vector2(0, -10), Vector2(0, 10), Vector2(10, 0), Vector2(-10, 0)]
 
@@ -55,7 +56,6 @@ func _physics_process(delta):
 			wander_timer.stop()
 			animation_state.travel("Run")
 			chase_target()
-#			print(target)
 			if !target:
 				print(target)
 				print("start wanderin")
@@ -69,6 +69,9 @@ func _physics_process(delta):
 			animation_state.travel("Run")
 			if wander_timer.time_left <= 0:
 				wander()
+				
+	if soft_body_collision.is_colliding():
+		velocity += soft_body_collision.get_push_vector() * delta * 100
 	move_and_slide(velocity * MAX_SPEED)
 		
 

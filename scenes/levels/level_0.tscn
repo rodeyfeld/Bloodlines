@@ -9,7 +9,20 @@
 position = Vector2( 889, 514 )
 
 [node name="skeleton_grunt2" parent="." index="5" instance=ExtResource( 2 )]
-position = Vector2( 543, 388 )
+position = Vector2( 530, 410 )
+collision_mask = 32
+
+[node name="skeleton_grunt3" parent="." index="6" instance=ExtResource( 2 )]
+position = Vector2( 653, 337 )
+collision_mask = 32
+
+[node name="skeleton_grunt4" parent="." index="7" instance=ExtResource( 2 )]
+position = Vector2( 246, 483 )
+collision_mask = 32
+
+[node name="skeleton_grunt5" parent="." index="8" instance=ExtResource( 2 )]
+position = Vector2( 908, 149 )
+collision_mask = 32
 
 [editable path="stairs_back"]
 [editable path="stairs_forward"]
