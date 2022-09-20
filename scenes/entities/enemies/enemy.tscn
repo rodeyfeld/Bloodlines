@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/entities/enemies/enemy.gd" type="Script" id=1]
 [ext_resource path="res://scenes/overlap/soft_body_collision.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/attributes/Stats.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/attributes/Healthbar.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/overlap/enemy_detection_zone.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/attributes/StatusTags.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CapsuleShape2D" id=15]
 radius = 88.0
@@ -80,6 +81,8 @@ wait_time = 3.0
 one_shot = true
 
 [node name="soft_body_collision" parent="." instance=ExtResource( 2 )]
+
+[node name="status_tags" parent="." instance=ExtResource( 7 )]
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]

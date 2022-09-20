@@ -658,3 +658,4 @@ parameters/Run/blend_position = Vector2( 0, 0 )
 [editable path="enemy"]
 [editable path="enemy/Hurtbox"]
 [editable path="enemy/enemy_detection_zone"]
+[editable path="enemy/soft_body_collision"]

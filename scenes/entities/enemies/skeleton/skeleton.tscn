@@ -234,7 +234,7 @@ script = ExtResource( 1 )
 position = Vector2( 3, -4 )
 frames = SubResource( 24 )
 animation = "idle"
-frame = 6
+frame = 9
 playing = true
 
 [node name="Healthbar" parent="AnimatedSprite" instance=ExtResource( 8 )]

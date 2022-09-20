@@ -897,10 +897,11 @@ animations = [ {
 } ]
 
 [node name="player" type="KinematicBody2D" groups=["player"]]
+z_index = 3
 collision_layer = 2
 collision_mask = 32
 script = ExtResource( 1 )
-MAX_SPEED = 200
+MAX_SPEED = 150
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

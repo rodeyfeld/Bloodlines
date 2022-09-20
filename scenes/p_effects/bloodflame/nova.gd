@@ -2,7 +2,6 @@ extends KinematicBody2D
 
 var parent = null
 var animationPlayer: AnimationPlayer
-onready var tween = get_node("Tween")
 onready var hitbox = $Hitbox
 
 func _ready():
@@ -15,10 +14,11 @@ func configure(s = null):
 #	animationPlayer.play("New Anim (2)")
 	position.x = parent.position.x
 	position.y = parent.position.y
-
-func _physics_process(_delta):
-	position.x = parent.position.x
-	position.y = parent.position.y
+#
+#func _physics_process(_delta):
+#	position.x = parent.position.x
+#	position.y = parent.position.y
 
 func _on_Timer_timeout():
+#	pass
 	self.queue_free()

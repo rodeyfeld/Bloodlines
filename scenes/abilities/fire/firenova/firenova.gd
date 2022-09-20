@@ -13,8 +13,8 @@ func execute(s):
 		start_cooldown(cooldown)
 		var f = firenova.instance()
 		f.configure(s)
-		get_node("/root").add_child(f)
-		
+		add_child(f)
+
 func start_cooldown(duration):
 	self.cooldown_active = true
 	timer.start(duration)

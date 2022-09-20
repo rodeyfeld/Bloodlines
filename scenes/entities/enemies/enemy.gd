@@ -20,7 +20,7 @@ enum {
 var state = CHASE
 
 onready var stats = $Stats
-#onready var status_tags = $StatusTags
+onready var status_tags = $status_tags
 onready var hurtbox = $Hurtbox
 onready var sprite = $AnimatedSprite
 onready var healthbar = $AnimatedSprite/Healthbar
@@ -49,7 +49,6 @@ func _physics_process(delta):
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 			animation_state.travel("Idle")
 			look_for_player()
-			print("time left ", idle_timer.time_left)
 			if idle_timer.time_left <= 0:
 				state = WANDER
 		CHASE:
@@ -57,26 +56,24 @@ func _physics_process(delta):
 			animation_state.travel("Run")
 			chase_target()
 			if !target:
-				print(target)
-				print("start wanderin")
 				state = IDLE
-				print("starting timer")
 				idle_timer.start()
 			else:
 				idle_timer.stop()
 		WANDER:
-			print("WANDER")
 			animation_state.travel("Run")
+			look_for_player()
 			if wander_timer.time_left <= 0:
 				wander()
 				
 	if soft_body_collision.is_colliding():
 		velocity += soft_body_collision.get_push_vector() * delta * 100
+	
 	move_and_slide(velocity * MAX_SPEED)
 		
 
 func look_for_player():
-	print(enemy_detection_zone.is_player_visible())
+#	print(enemy_detection_zone.is_player_visible())
 	if enemy_detection_zone.is_player_visible():
 		state = CHASE
 

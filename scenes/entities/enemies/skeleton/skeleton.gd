@@ -55,8 +55,7 @@ func _physics_process(delta):
 			else:
 				enemy_detection_not_detected_timer.start()
 				state = IDLE
-				
-			sprite.flip_h = velocity.x < 0
+				seek_player()
 	velocity = move_and_slide(velocity)
 
 func seek_player():
@@ -64,7 +63,6 @@ func seek_player():
 		state = CHASE
 
 func wander(delta):
-	print("wandering")
 	sprite.play("run")
 	var direction = Vector2(rand_range(-1, 1), rand_range(-1, 1))
 	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)

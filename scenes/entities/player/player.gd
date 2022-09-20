@@ -36,7 +36,7 @@ onready var animationState = animationTree.get("parameters/playback")
 func _ready():
 	inventory = inventory_scene.instance()
 	inventory.visible = false
-#	add_child(inventory)
+	add_child(inventory)
 	
 	trail_timer.connect("timeout", self, "add_trail")
 
@@ -108,6 +108,7 @@ func move_state(delta):
 	move()
 
 func move():
+	
 	velocity = move_and_slide(velocity)
 
 

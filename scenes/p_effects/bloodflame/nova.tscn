@@ -1,30 +1,44 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scenes/p_effects/bloodflame/nova.gd" type="Script" id=1]
 [ext_resource path="res://scenes/overlap/Hitbox.tscn" type="PackedScene" id=2]
-
-[sub_resource type="CircleShape2D" id=4]
-radius = 46.0109
-
-[sub_resource type="CircleShape2D" id=7]
-radius = 121.0
+[ext_resource path="res://assets/effects/baseparticles/circle_01.png" type="Texture" id=3]
+[ext_resource path="res://assets/effects/baseparticles/fire_01.png" type="Texture" id=4]
+[ext_resource path="res://assets/effects/baseparticles/flame_06.png" type="Texture" id=5]
+[ext_resource path="res://assets/effects/baseparticles/slash_01.png" type="Texture" id=6]
+[ext_resource path="res://assets/effects/baseparticles/flame_03.png" type="Texture" id=7]
 
 [sub_resource type="Animation" id=8]
 resource_name = "New Anim (2)"
 loop = true
 step = 0.25
 tracks/0/type = "value"
-tracks/0/path = NodePath("Hitbox/CollisionShape2D:shape")
+tracks/0/path = NodePath("Sprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25, 0.75 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ SubResource( 4 ), SubResource( 7 ), SubResource( 7 ) ]
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.1, 0.1 ), Vector2( 0.7, 0.7 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 100.0
 
 [sub_resource type="Animation" id=9]
 length = 0.001
@@ -40,42 +54,98 @@ tracks/0/keys = {
 "update": 0,
 "values": [ SubResource( 4 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:shape:radius")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.01 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.1, 0.1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0, 0.398773, 0.98773, 1 )
-colors = PoolColorArray( 0.976471, 0.825123, 0.00784315, 1, 0.556863, 0.415686, 0.0117647, 1, 0.984314, 0.380392, 0.0196078, 0.184314, 0.486275, 0.00392157, 0.00784314, 0 )
+offsets = PoolRealArray( 0, 0.429487 )
+colors = PoolColorArray( 0.849609, 0.844437, 0.660439, 1, 1, 0.527344, 0, 1 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
 
 [sub_resource type="ParticlesMaterial" id=10]
+lifetime_randomness = 1.0
 emission_shape = 5
 emission_ring_radius = 80.0
 emission_ring_inner_radius = 20.0
 emission_ring_height = 1.0
 emission_ring_axis = Vector3( 0, 0, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.02
+color_ramp = SubResource( 2 )
+
+[sub_resource type="Gradient" id=18]
+colors = PoolColorArray( 0.976471, 0.894118, 0.427451, 0.0980392, 1, 0.52549, 0, 0 )
+
+[sub_resource type="GradientTexture" id=19]
+gradient = SubResource( 18 )
+
+[sub_resource type="ParticlesMaterial" id=3]
 flag_align_y = true
 flag_disable_z = true
 direction = Vector3( 0, 0, 0 )
-spread = 0.0
+spread = 180.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 10.0
+initial_velocity = 100.0
+initial_velocity_random = 1.0
+angular_velocity = 337.88
+angular_velocity_random = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-radial_accel = 100.0
-scale = 5.0
-color_ramp = SubResource( 2 )
+angle = 720.0
+angle_random = 1.0
+scale = 0.5
+color_ramp = SubResource( 19 )
 
-[sub_resource type="GradientTexture" id=11]
-gradient = SubResource( 1 )
+[sub_resource type="Gradient" id=15]
+colors = PoolColorArray( 0.938965, 0.933485, 0.377787, 1, 1, 0.45098, 0, 0 )
 
-[sub_resource type="ParticlesMaterial" id=3]
-emission_shape = 5
-emission_ring_radius = 20.0
-emission_ring_inner_radius = 0.0
-emission_ring_height = 1.0
-emission_ring_axis = Vector3( 0, 0, 1 )
+[sub_resource type="GradientTexture" id=16]
+gradient = SubResource( 15 )
+
+[sub_resource type="ParticlesMaterial" id=17]
 flag_align_y = true
+flag_rotate_y = true
 flag_disable_z = true
 direction = Vector3( 0, 0, 0 )
 spread = 180.0
@@ -83,9 +153,49 @@ gravity = Vector3( 0, 0, 0 )
 initial_velocity = 500.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-radial_accel = -1000.0
-scale = 5.0
-color_ramp = SubResource( 11 )
+damping = 2000.0
+scale = 0.2
+color_ramp = SubResource( 16 )
+
+[sub_resource type="Gradient" id=13]
+colors = PoolColorArray( 1, 0.814953, 0.300781, 1, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=14]
+gradient = SubResource( 13 )
+
+[sub_resource type="ParticlesMaterial" id=12]
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 500.0
+angular_velocity = 720.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = -400.0
+damping = 2000.0
+scale = 0.15
+color_ramp = SubResource( 14 )
+
+[sub_resource type="Gradient" id=20]
+colors = PoolColorArray( 1, 0.920105, 0.0703125, 1, 1, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=21]
+gradient = SubResource( 20 )
+
+[sub_resource type="ParticlesMaterial" id=22]
+lifetime_randomness = 1.0
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 250.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 1000.0
+damping_random = 1.0
+color_ramp = SubResource( 21 )
 
 [node name="Node2D" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -96,24 +206,48 @@ anims/RESET = SubResource( 9 )
 
 [node name="Particles2D2" type="Particles2D" parent="."]
 amount = 100
-explosiveness = 1.0
+lifetime = 2.0
 process_material = SubResource( 10 )
+texture = ExtResource( 5 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
-amount = 500
-explosiveness = 0.9
+rotation = -0.000288423
+amount = 20
+explosiveness = 1.0
 process_material = SubResource( 3 )
+texture = ExtResource( 4 )
+
+[node name="Particles2D4" type="Particles2D" parent="."]
+amount = 75
+explosiveness = 1.0
+process_material = SubResource( 17 )
+texture = ExtResource( 6 )
+
+[node name="Particles2D3" type="Particles2D" parent="."]
+amount = 100
+explosiveness = 0.99
+process_material = SubResource( 12 )
+texture = ExtResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.866667, 0.556863, 0.188235, 1 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 3 )
 
 [node name="Hitbox" parent="." instance=ExtResource( 2 )]
 collision_mask = 9
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
+visible = false
 shape = SubResource( 4 )
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[node name="Tween" type="Tween" parent="."]
+[node name="Particles2D5" type="Particles2D" parent="."]
+amount = 100
+explosiveness = 1.0
+process_material = SubResource( 22 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 

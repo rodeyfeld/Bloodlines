@@ -4,7 +4,7 @@ var firebolt = load("res://scenes/p_effects/bloodflame/fireball.tscn")
 
 var distance = 200
 var speed = 300
-var cooldown = .2
+var cooldown = .5
 var cooldown_active = false
 var capacity = 3
 
@@ -15,7 +15,7 @@ func execute(s, direction=null):
 	if !cooldown_active:
 		start_cooldown(cooldown)
 		if !direction: direction = (s.get_global_mouse_position() - s.position).normalized()
-		for angle in [-22.5, 0, 22.5]:
+		for angle in [0]:
 			var radians = deg2rad(angle)
 			var f = firebolt.instance()
 			f.position.x = s.position.x + direction.x * 50

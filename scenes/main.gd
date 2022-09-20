@@ -21,7 +21,7 @@ func _ready():
 	curr_level.add_child(player)
 	
 	curr_level.stairs_forward.connect("body_entered", self, "handle_level_forward")
-	player.global_position = curr_level.stairs_forward.player_spawn_position.global_position
+	player.global_position = curr_level.stairs_backward.player_spawn_position.global_position
 
 #func start_button_pressed():
 #	remove_child(curr_scene)
