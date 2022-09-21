@@ -1,0 +1,105 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://assets/effects/baseparticles/star_05.png" type="Texture" id=1]
+[ext_resource path="res://assets/effects/baseparticles/smoke_07.png" type="Texture" id=2]
+[ext_resource path="res://assets/effects/baseparticles/muzzle_04.png" type="Texture" id=3]
+[ext_resource path="res://assets/effects/baseparticles/smoke_01.png" type="Texture" id=4]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0.581543, 0.0885944, 0.0885944, 1, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 300.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.5
+color_ramp = SubResource( 2 )
+
+[sub_resource type="Gradient" id=4]
+colors = PoolColorArray( 1, 0.28125, 0, 1, 0.890196, 0.572549, 0.2, 0.0980392 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+flag_align_y = true
+flag_disable_z = true
+direction = Vector3( -1, -1, 0 )
+spread = 15.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 300.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.5
+color_ramp = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+flag_align_y = true
+flag_disable_z = true
+direction = Vector3( 1, -1, 0 )
+spread = 15.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 300.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.5
+color_ramp = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 15.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 50.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color = Color( 0.466667, 0.192157, 0.192157, 1 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 7, -40 )
+amount = 20
+process_material = SubResource( 3 )
+texture = ExtResource( 2 )
+
+[node name="front2" type="Particles2D" parent="."]
+visible = false
+position = Vector2( 1, 19 )
+process_material = SubResource( 6 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="front" type="Particles2D" parent="."]
+visible = false
+position = Vector2( 1, 19 )
+process_material = SubResource( 7 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="meteor_trail" type="Particles2D" parent="."]
+position = Vector2( 0, -178 )
+amount = 4
+lifetime = 0.2
+process_material = SubResource( 8 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="meteor_ball" type="Sprite" parent="."]
+modulate = Color( 0.180392, 0.156863, 0.152941, 1 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
