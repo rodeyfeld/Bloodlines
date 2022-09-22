@@ -19,8 +19,8 @@ radius = 44.0
 height = 32.0
 
 [sub_resource type="CapsuleShape2D" id=76]
-radius = 13.0
-height = 14.98
+radius = 7.0
+height = 0.0
 
 [sub_resource type="AtlasTexture" id=79]
 flags = 4
@@ -1074,7 +1074,7 @@ start_node = "Run"
 [sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 
 [sub_resource type="CircleShape2D" id=77]
-radius = 8.0
+radius = 5.0
 
 [sub_resource type="CapsuleShape2D" id=122]
 radius = 8.0
@@ -1086,29 +1086,23 @@ radius = 22.0
 [node name="skeleton_grunt2" instance=ExtResource( 2 )]
 position = Vector2( 0, -4 )
 
-[node name="Hurtbox" parent="." index="0"]
-visible = true
-
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( 0, 16 )
 shape = SubResource( 78 )
 
 [node name="wall_collision" parent="." index="1"]
+visible = true
 shape = SubResource( 76 )
 
 [node name="AnimatedSprite" parent="." index="2"]
 frames = SubResource( 74 )
 animation = "run_down"
 
-[node name="Healthbar" parent="AnimatedSprite" index="0"]
-visible = false
-margin_left = -67.0
-margin_top = 79.0
-margin_right = -3.0
-margin_bottom = 143.0
-
 [node name="Stats" parent="." index="3"]
-max_health = 200
+max_health = 50
+
+[node name="enemy_detection_zone" parent="." index="5"]
+visible = true
 
 [node name="animation_player" parent="." index="6"]
 anims/RESET = SubResource( 60 )
@@ -1133,28 +1127,44 @@ parameters/Attack/blend_position = Vector2( -0.00193423, 0.00320697 )
 parameters/Idle/blend_position = Vector2( 0, 0 )
 parameters/Run/blend_position = Vector2( 0, 0 )
 
-[node name="soft_body_collision" parent="." index="10"]
-visible = false
-
 [node name="CollisionShape2D" parent="soft_body_collision" index="0"]
 shape = SubResource( 77 )
 
 [node name="hitbox_pivot" parent="." index="12"]
+visible = false
 position = Vector2( 0, 4 )
 
 [node name="Hitbox" parent="hitbox_pivot" index="0"]
+visible = false
 collision_mask = 4
 
 [node name="CollisionShape2D" parent="hitbox_pivot/Hitbox" index="0"]
+visible = false
 position = Vector2( 15, 0 )
 shape = SubResource( 122 )
 disabled = false
 
 [node name="enemy_attack_zone" parent="." index="13"]
+visible = false
 monitorable = false
 
 [node name="CollisionShape2D" parent="enemy_attack_zone" index="0"]
+visible = false
 shape = SubResource( 123 )
+
+[node name="hp_icon" parent="." index="14"]
+visible = false
+margin_left = -26.0
+margin_top = 12.0
+margin_right = 486.0
+margin_bottom = 524.0
+
+[node name="hp_bar" parent="." index="15"]
+margin_left = -14.0
+margin_top = 24.0
+margin_right = 14.0
+margin_bottom = 32.0
+value = 50.0
 
 [connection signal="area_exited" from="enemy_attack_zone" to="." method="_on_enemy_attack_zone_area_exited"]
 

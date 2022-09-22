@@ -24,7 +24,6 @@ onready var stats = $Stats
 onready var status_tags = $status_tags
 onready var hurtbox = $Hurtbox
 onready var sprite = $AnimatedSprite
-onready var healthbar = $AnimatedSprite/Healthbar
 onready var aoe_raycast = $Hurtbox/RayCast2D
 onready var enemy_detection_zone = $enemy_detection_zone
 onready var enemy_attack_zone = $enemy_attack_zone
@@ -33,13 +32,15 @@ onready var raycast_to_trail = $raycast_to_trail
 onready var wander_timer = $wander_timer
 onready var animation_tree = $animation_tree
 onready var soft_body_collision = $soft_body_collision
+onready var hp_bar = $hp_bar
+onready var hitbox_shape = 	$hitbox_pivot/Hitbox/CollisionShape2D
 onready var animation_state = animation_tree.get("parameters/playback")
 var raycast_adjustments = [Vector2(0, -10), Vector2(0, 10), Vector2(10, 0), Vector2(-10, 0)]
 
 func _ready():
-	healthbar.min_value = 0
-	healthbar.max_value = stats.max_health
 	animation_tree.active = true
+	hp_bar.max_value = stats.max_health
+	hp_bar.value = stats.max_health
 #	chase()
 
 func _physics_process(delta):
@@ -139,7 +140,8 @@ func _on_Hurtbox_area_entered(area):
 		text.position.x = self.position.x - (randi() % 50)
 		text.position.y = self.position.y - 40 - (randi() % 50)
 		stats.health -= area.damage
-		healthbar.value = stats.health
+		hp_bar.value = stats.health
+		
 
 func _on_Stats_no_health():
 	sprite.play("death")
@@ -158,4 +160,5 @@ func _on_enemy_attack_zone_area_entered(_area):
 	state = ATTACK
 
 func _on_enemy_attack_zone_area_exited(area):
+	hitbox_shape.set_deferred("disabled", true)
 	state = CHASE

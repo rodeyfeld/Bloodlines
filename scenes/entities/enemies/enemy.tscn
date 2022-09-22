@@ -1,14 +1,16 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/entities/enemies/enemy.gd" type="Script" id=1]
 [ext_resource path="res://scenes/overlap/soft_body_collision.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/overlap/Hurtbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/attributes/Stats.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/attributes/Healthbar.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/ui/hud/bar-over.png" type="Texture" id=5]
 [ext_resource path="res://scenes/overlap/enemy_detection_zone.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/attributes/StatusTags.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/overlap/Hitbox.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/overlap/enemy_attack_zone.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/effects/baseparticles/symbol_01.png" type="Texture" id=10]
+[ext_resource path="res://assets/ui/hud/bar-progress.png" type="Texture" id=11]
 
 [sub_resource type="CapsuleShape2D" id=15]
 radius = 88.0
@@ -43,15 +45,6 @@ visible = false
 shape = SubResource( 14 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-
-[node name="Healthbar" parent="AnimatedSprite" instance=ExtResource( 5 )]
-margin_left = -68.0
-margin_top = 544.0
-margin_right = 93.0
-margin_bottom = 608.0
-rect_scale = Vector2( 2, 1 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="Stats" parent="." instance=ExtResource( 4 )]
 max_health = 5
@@ -96,6 +89,32 @@ disabled = true
 [node name="enemy_attack_zone" parent="." instance=ExtResource( 9 )]
 collision_layer = 0
 collision_mask = 4
+
+[node name="hp_icon" type="TextureRect" parent="."]
+modulate = Color( 1, 0, 0, 1 )
+margin_left = -4.0
+margin_top = -16.0
+margin_right = 508.0
+margin_bottom = 496.0
+rect_scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 10 )
+
+[node name="hp_bar" type="TextureProgress" parent="."]
+margin_left = 40.0
+margin_right = 355.0
+margin_bottom = 16.0
+value = 47.0
+texture_under = ExtResource( 11 )
+texture_over = ExtResource( 5 )
+texture_progress = ExtResource( 11 )
+tint_under = Color( 0.427451, 0.427451, 0.427451, 0.266667 )
+tint_over = Color( 1, 0, 0, 0.290196 )
+tint_progress = Color( 0.219608, 1, 0, 1 )
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
