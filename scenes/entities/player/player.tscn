@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=2]
+[gd_scene load_steps=119 format=2]
 
 [ext_resource path="res://scenes/entities/player/player.gd" type="Script" id=1]
 [ext_resource path="res://assets/entities/player/right/SorceressRighAttack01.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://assets/entities/player/up/SorceressUpIdle.png" type="Texture" id=12]
 [ext_resource path="res://assets/entities/player/up/SorceressUpRun.png" type="Texture" id=13]
 [ext_resource path="res://assets/entities/player/right/SorceressRightJump.png" type="Texture" id=14]
+[ext_resource path="res://scenes/ui/hud/hud.tscn" type="PackedScene" id=15]
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 8.0
@@ -956,3 +957,5 @@ curve = SubResource( 129 )
 [node name="camera_offset_path" type="PathFollow2D" parent="camera_offset_area"]
 position = Vector2( -260, -171 )
 rotation = 0.00366044
+
+[node name="hud" parent="." instance=ExtResource( 15 )]

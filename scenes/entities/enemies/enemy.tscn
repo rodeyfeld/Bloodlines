@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/entities/enemies/enemy.gd" type="Script" id=1]
 [ext_resource path="res://scenes/overlap/soft_body_collision.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/attributes/Healthbar.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/overlap/enemy_detection_zone.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/attributes/StatusTags.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/overlap/Hitbox.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CapsuleShape2D" id=15]
 radius = 88.0
@@ -84,6 +85,10 @@ one_shot = true
 
 [node name="status_tags" parent="." instance=ExtResource( 7 )]
 
+[node name="hitbox_pivot" type="Position2D" parent="."]
+
+[node name="Hitbox" parent="hitbox_pivot" instance=ExtResource( 8 )]
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
 [connection signal="timeout" from="idle_timer" to="." method="_on_idle_timer_timeout"]
@@ -91,3 +96,4 @@ one_shot = true
 [editable path="Hurtbox"]
 [editable path="enemy_detection_zone"]
 [editable path="soft_body_collision"]
+[editable path="hitbox_pivot/Hitbox"]

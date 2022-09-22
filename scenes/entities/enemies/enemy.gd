@@ -15,7 +15,8 @@ export var FRICTION = 200
 enum {
 	IDLE,
 	WANDER,
-	CHASE
+	CHASE,
+	ATTACK
 } 
 var state = CHASE
 
@@ -64,6 +65,8 @@ func _physics_process(delta):
 			look_for_player()
 			if wander_timer.time_left <= 0:
 				wander()
+		ATTACK:
+			pass
 				
 	if soft_body_collision.is_colliding():
 		velocity += soft_body_collision.get_push_vector() * delta * 100
