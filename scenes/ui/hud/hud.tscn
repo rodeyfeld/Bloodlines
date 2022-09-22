@@ -12,13 +12,7 @@ anchor_bottom = 1.0
 margin_right = -1024.0
 margin_bottom = -600.0
 
-[node name="Label" type="Label" parent="meter_bars"]
-visible = false
-margin_right = 40.0
-margin_bottom = 14.0
-text = "ayyyy"
-
-[node name="TextureRect" type="TextureRect" parent="meter_bars"]
+[node name="hp_icon" type="TextureRect" parent="meter_bars"]
 modulate = Color( 1, 0, 0, 1 )
 margin_left = -4.0
 margin_top = -16.0
@@ -27,7 +21,7 @@ margin_bottom = 496.0
 rect_scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 3 )
 
-[node name="TextureProgress" type="TextureProgress" parent="meter_bars"]
+[node name="hp_bar" type="TextureProgress" parent="meter_bars"]
 margin_left = 40.0
 margin_right = 355.0
 margin_bottom = 16.0

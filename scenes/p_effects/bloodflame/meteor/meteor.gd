@@ -16,7 +16,6 @@ func configure(s_pos, d_pos):
 	global_position = start_pos
 #	velocity = velocity.move_toward(destination_pos - self.position).normalized()
 	velocity = d_pos.distance_to(s_pos) / .5 
-	print(velocity)
 #	move_and_slide(velocity)
 
 func _physics_process(delta):

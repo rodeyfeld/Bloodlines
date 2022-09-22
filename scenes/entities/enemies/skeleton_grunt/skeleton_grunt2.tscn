@@ -1,4 +1,4 @@
-[gd_scene load_steps=133 format=2]
+[gd_scene load_steps=134 format=2]
 
 [ext_resource path="res://assets/entities/enemies/lucifer_enemies/skeleton_grunt/Right/Png/SkeletonWithSwordRightIdle.png" type="Texture" id=1]
 [ext_resource path="res://scenes/entities/enemies/enemy.tscn" type="PackedScene" id=2]
@@ -1080,6 +1080,9 @@ radius = 8.0
 radius = 8.0
 height = 18.0
 
+[sub_resource type="CircleShape2D" id=123]
+radius = 22.0
+
 [node name="skeleton_grunt2" instance=ExtResource( 2 )]
 position = Vector2( 0, -4 )
 
@@ -1139,11 +1142,24 @@ shape = SubResource( 77 )
 [node name="hitbox_pivot" parent="." index="12"]
 position = Vector2( 0, 4 )
 
+[node name="Hitbox" parent="hitbox_pivot" index="0"]
+collision_mask = 4
+
 [node name="CollisionShape2D" parent="hitbox_pivot/Hitbox" index="0"]
 position = Vector2( 15, 0 )
 shape = SubResource( 122 )
+disabled = false
+
+[node name="enemy_attack_zone" parent="." index="13"]
+monitorable = false
+
+[node name="CollisionShape2D" parent="enemy_attack_zone" index="0"]
+shape = SubResource( 123 )
+
+[connection signal="area_exited" from="enemy_attack_zone" to="." method="_on_enemy_attack_zone_area_exited"]
 
 [editable path="Hurtbox"]
 [editable path="enemy_detection_zone"]
 [editable path="soft_body_collision"]
 [editable path="hitbox_pivot/Hitbox"]
+[editable path="enemy_attack_zone"]

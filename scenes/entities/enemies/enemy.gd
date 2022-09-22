@@ -7,7 +7,7 @@ var level_navigation: Navigation2D = null
 var target = null
 var path:Array = []
 var player_located:bool = false
-
+var attack_vector
 export var ACCELERATION = 300
 export var MAX_SPEED = 100
 export var FRICTION = 200
@@ -27,6 +27,7 @@ onready var sprite = $AnimatedSprite
 onready var healthbar = $AnimatedSprite/Healthbar
 onready var aoe_raycast = $Hurtbox/RayCast2D
 onready var enemy_detection_zone = $enemy_detection_zone
+onready var enemy_attack_zone = $enemy_attack_zone
 onready var idle_timer = $idle_timer
 onready var raycast_to_trail = $raycast_to_trail
 onready var wander_timer = $wander_timer
@@ -44,6 +45,7 @@ func _ready():
 func _physics_process(delta):
 	
 	animation_tree.set("parameters/Run/blend_position", velocity.normalized())
+	
 	match state:
 		IDLE:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
@@ -66,7 +68,9 @@ func _physics_process(delta):
 			if wander_timer.time_left <= 0:
 				wander()
 		ATTACK:
-			pass
+			animation_tree.set("parameters/Attack/blend_position", attack_vector)
+			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+			animation_state.travel("Attack")
 				
 	if soft_body_collision.is_colliding():
 		velocity += soft_body_collision.get_push_vector() * delta * 100
@@ -148,3 +152,10 @@ func _on_Stats_no_health():
 
 func _on_idle_timer_timeout():
 	state = IDLE
+
+func _on_enemy_attack_zone_area_entered(_area):
+	attack_vector = velocity.normalized()
+	state = ATTACK
+
+func _on_enemy_attack_zone_area_exited(area):
+	state = CHASE

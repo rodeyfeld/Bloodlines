@@ -22,6 +22,8 @@ var infernalgate = load_ability("fire", "infernalgate")
 var chain_lighnting = load_ability("lightning", "chain_lightning")
 var burningbarrage = load_ability("fire", "burningbarrage")
 
+var floating_text = preload("res://scenes/effects/dmg_text/dmg.tscn")
+
 var mouse_pos = Vector2.ZERO
 var state = MOVE
 var inventory = null
@@ -33,6 +35,8 @@ onready var trail_timer = $trail_timer
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var collision_shape2d = $CollisionShape2D
+onready var stats = $stats
+onready var hp_bar = $hud/meter_bars/hp_bar
 onready var animationState = animationTree.get("parameters/playback")
 onready var camera_offset_path = $camera_offset_area/camera_offset_path
 
@@ -40,7 +44,7 @@ func _ready():
 	inventory = inventory_scene.instance()
 	inventory.visible = false
 	add_child(inventory)
-	
+	hp_bar.max_value = stats.max_health
 	trail_timer.connect("timeout", self, "add_trail")
 
 func _physics_process(delta):
@@ -101,8 +105,8 @@ func move_state(delta):
 	if input_vector != Vector2.ZERO:
 #		roll_vector = input_vector
 #		swordHitBox.knockback_vector = input_vector
-		animationTree.set("parameters/Idle/blend_position", _direction)
-		animationTree.set("parameters/Run/blend_position", _direction)
+		animationTree.set("parameters/Idle/blend_position", input_vector)
+		animationTree.set("parameters/Run/blend_position", input_vector)
 #		animationTree.set("parameters/Attack/blend_position", input_vector)
 #		animationTree.set("parameters/Roll/blend_position", input_vector)
 		animationState.travel("Run")
@@ -118,34 +122,14 @@ func move():
 	velocity = move_and_slide(velocity)
 
 
-#func _physics_process(delta):
-#	_read_input()
-	
 
-#
-#func interact():
-#	var c = _get_collisions()
-#	if c:
-#		if c.get_gropus()[0] == "interactable": c.instance
-#
-#func _get_collisions():
-#	var c = get_last_slide_collision()
-#	if (c && c.get_collider()): return c.get_collider()
-#	else: return null
+func _on_Hurtbox_area_entered(area):
 
-#
-#func _read_input():
-#	velocity = Vector2()
-#	mouse_pos = get_global_mouse_position()
-#	if Input.is_action_pressed("ui_up")	: move.execute(self, "up")
-#	if Input.is_action_pressed("ui_down")	: move.execute(self, "down")
-#	if Input.is_action_pressed("ui_up")	: move.execute(self, "right")
-#	if Input.is_action_pressed("ui_up")	: move.execute(self, "left")
-	
-#	if last_ability > global_cooldown:
-#		if Input.is_action_pressed("interact"):
-#			interact()
-#			last_ability = 0
-#		if Input.is_action_pressed("ability1"):
-#			blink.execute()
-#			last_ability = 0
+	var text = floating_text.instance()
+	print(area)
+	text.amount = area.damage
+	get_node("/root").add_child(text)
+	text.position.x = self.position.x - (randi() % 50)
+	text.position.y = self.position.y - 40 - (randi() % 50)
+	stats.health -= area.damage
+	hp_bar.value = stats.health
