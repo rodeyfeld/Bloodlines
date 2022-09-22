@@ -1,6 +1,6 @@
 extends Node
 
-var meteor = load("res://scenes/p_effects/bloodflame/meteor.tscn")
+var meteor = load("res://scenes/p_effects/bloodflame/meteor/meteor.tscn")
 
 var cooldown = 1
 var cooldown_active = false
