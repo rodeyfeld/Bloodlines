@@ -38,6 +38,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=4]
+resource_local_to_scene = true
 radius = 100.0
 
 [sub_resource type="Animation" id=9]
@@ -235,10 +236,9 @@ scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 3 )
 
 [node name="Hitbox" parent="." instance=ExtResource( 2 )]
-collision_mask = 9
+collision_mask = 8
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-visible = false
 shape = SubResource( 4 )
 
 [node name="Timer" type="Timer" parent="."]

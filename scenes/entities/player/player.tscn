@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=2]
+[gd_scene load_steps=118 format=2]
 
 [ext_resource path="res://scenes/entities/player/player.gd" type="Script" id=1]
 [ext_resource path="res://assets/entities/player/right/SorceressRighAttack01.png" type="Texture" id=2]
@@ -896,6 +896,11 @@ animations = [ {
 "speed": 10.0
 } ]
 
+[sub_resource type="Curve2D" id=129]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -260, -171, 0, 0, 0, 0, 12.7427, -170, 0, 0, 0, 0, 289, -171 )
+}
+
 [node name="player" type="KinematicBody2D" groups=["player"]]
 z_index = 3
 collision_layer = 2
@@ -937,7 +942,17 @@ animation = "BloodflameMageDownRun"
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 0.5, 0.5 )
+smoothing_enabled = true
 
 [node name="trail_timer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
+
+[node name="camera_offset_area" type="Path2D" parent="."]
+position = Vector2( -10, -23 )
+scale = Vector2( 0.941712, 1 )
+curve = SubResource( 129 )
+
+[node name="camera_offset_path" type="PathFollow2D" parent="camera_offset_area"]
+position = Vector2( -260, -171 )
+rotation = 0.00366044

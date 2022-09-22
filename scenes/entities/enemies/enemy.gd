@@ -43,7 +43,6 @@ func _ready():
 func _physics_process(delta):
 	
 	animation_tree.set("parameters/Run/blend_position", velocity.normalized())
-#	print(state)
 	match state:
 		IDLE:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
@@ -69,11 +68,10 @@ func _physics_process(delta):
 	if soft_body_collision.is_colliding():
 		velocity += soft_body_collision.get_push_vector() * delta * 100
 	
-	move_and_slide(velocity * MAX_SPEED)
+	var _val = move_and_slide(velocity * MAX_SPEED)
 		
 
 func look_for_player():
-#	print(enemy_detection_zone.is_player_visible())
 	if enemy_detection_zone.is_player_visible():
 		state = CHASE
 

@@ -30,33 +30,10 @@ func configure(o_pos, pos):
 			cdz.unit_stunned = raycast.get_collider()
 	add_child(cdz)
 	cdz.global_position = coll_point
-#	print(cdz.position)
 	animationPlayer.play("fade")
 	return raycast
 
 
 func _on_Timer_timeout():
 	queue_free()
-
-
-#
-#func drawToPoint():
-#	print(orig.position, position2d.position)
-#	var distance = orig.position.distance_to(position2d.position)
-#	var points = PoolVector2Array()
-#	var point_count = floor(distance / point_segments)
-#	points.append(Vector2(orig.position.x, orig.position.y))
-#	for i in range(1, point_count-1):
-#		var point_vector = Vector2(i * point_segments, randi() % 50)
-#		points.append(point_vector)
-#	points.append(Vector2(position2d.position.x, position2d.position.y))
-#	line2d.points = points
-#	print(points)
-#	for point in points:
-#		var s = spark_emitter.instance()
-#		s.position.x = point.x
-#		s.position.y = point.y
-#		s.emitting = true
-#		get_node("/root").call_deferred("add_child", s)
-
 

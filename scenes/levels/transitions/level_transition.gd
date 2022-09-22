@@ -10,10 +10,8 @@ func transition_out():
 
 
 func _on_animation_player_animation_finished(_anim_name):
-#	print("fini anim")
 	pass
 
 
 func _on_animation_player_animation_started(_anim_name):
-#	print("animat started")
 	pass

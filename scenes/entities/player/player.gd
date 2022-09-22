@@ -12,7 +12,9 @@ enum {
 }
 
 
-var pyroblast = load_ability("fire", "pyroblast")
+#var pyroblast = load_ability("fire", "pyroblast")
+var meteor = load_ability("fire", "meteor")
+
 var firenova = load_ability("fire", "firenova")
 var sanguinekindling = load_ability("fire", "sanguinekindling")
 var infernalgate = load_ability("fire", "infernalgate")
@@ -32,6 +34,7 @@ onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var collision_shape2d = $CollisionShape2D
 onready var animationState = animationTree.get("parameters/playback")
+onready var camera_offset_path = $camera_offset_area/camera_offset_path
 
 func _ready():
 	inventory = inventory_scene.instance()
@@ -41,13 +44,16 @@ func _ready():
 	trail_timer.connect("timeout", self, "add_trail")
 
 func _physics_process(delta):
+	var aim_position = get_global_mouse_position()
 	match state:
 		MOVE:
 			move_state(delta)
 #		ATTACK:
 #			attack_state()
-	if Input.is_action_pressed("attack01"):
-		pyroblast.execute(self)
+	if Input.is_action_just_pressed("attack01"):
+		randomize()
+		camera_offset_path.unit_offset = rand_range(0, 1)
+		meteor.execute(camera_offset_path.global_position, aim_position)
 		last_ability = 0
 
 	if Input.is_action_pressed("attack02"):

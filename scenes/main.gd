@@ -50,8 +50,7 @@ func handle_level_backward(_area):
 	curr_level = next_level
 	curr_level.add_child(player)
 	player.global_position = curr_level.stairs_forward.player_spawn_position.global_position
-
-	print(player.collision_shape2d.disabled)
+	
 	yield(get_tree(), "idle_frame")
 	transition.transition_in()
 	yield(transition.animation_player, "animation_finished")
@@ -103,7 +102,6 @@ func handle_level_forward(_area):
 
 func instance_new_level():
 	var random_num = randi() % level_templates.size()
-	print(random_num)
 	return level_templates[random_num].instance()
 	
 	

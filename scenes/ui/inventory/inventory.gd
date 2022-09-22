@@ -30,7 +30,6 @@ func _ready():
 			inv_slot.item.load_texture()
 			inv_slot.load_item()
 		inv_slot.connect("gui_input", self, "slot_gui_input", [inv_slot])
-#		print(inv_slot.item)
 		
 		
 func slot_gui_input(event: InputEvent, slot: slot_class):

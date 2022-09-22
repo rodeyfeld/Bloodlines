@@ -11,14 +11,12 @@ func _ready():
 func configure(s = null):
 	parent = s
 	$test.play("New Anim (2)")
-#	animationPlayer.play("New Anim (2)")
 	position.x = parent.position.x
 	position.y = parent.position.y
-#
+##
 #func _physics_process(_delta):
 #	position.x = parent.position.x
 #	position.y = parent.position.y
 
 func _on_Timer_timeout():
-#	pass
 	self.queue_free()

@@ -36,20 +36,7 @@ func trigger_shot(orig, pos):
 			lightning_cdz_target = bolt.cdz
 			coll_point = hit.get_collider().global_position
 			chain_timer.start()
-	#
-#func _physics_process(delta):
-##	print(new_target)
-#	if new_target:
-#		print("new")
-#		var bolt = lightning_bolt.instance()
-#		add_child(bolt)
-#		var hit = bolt.configure(coll_point, new_target.global_position)
-#		if hit.get_collider().get_collision_mask_bit(5):
-#			hit.get_collider().status_tags.shocked = true
-#			new_target = bolt.cdz.new_target
-#			coll_point = hit.get_collider()
-
-
+	
 func start_cooldown(duration):
 	self.cooldown_active = true
 	timer.start(duration)
