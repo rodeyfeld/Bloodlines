@@ -70,7 +70,7 @@ func update_calculated():
 			base_dict.BonusDamage += inv_slot.item.item_buffs.BonusDamage
 	
 	calculated_label.text = str("Bonus Health: ", base_dict.BonusHealth, "\n", "Bonus Damage: ", base_dict.BonusDamage)
-
+	
 
 func _on_Panel5_equipment_updated():
 	update_calculated()

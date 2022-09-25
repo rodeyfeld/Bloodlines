@@ -1,6 +1,10 @@
 extends Node
 
-export(int) var max_health = 1
+export(float) var max_health = 1.0
+
+
+
+
 onready var health = max_health setget set_health
 
 signal no_health
