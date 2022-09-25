@@ -24,5 +24,18 @@ var elemental_stats
 func _init():
 	elemental_stats = elemental_stats_scene.new()
 	
+func set_to_zero():
+	max_health = 0.0
+	health_regen_percent = 0.0
+	health_regen_flat = 0.0
+	max_mana = 0.0
+	mana_regen_percent = 0.0
+	mana_regen_flat = 0.0
+	max_armor = 0.0
+	armor_regen_percent = 0.0
+	armor_regen_flat = 0.0
+	speed_percent = 0.0
+	speed_flat = 0.0
+	
 	
 

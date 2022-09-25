@@ -5,7 +5,8 @@ onready var tx = $TextureRect
 var item_name
 var item_quantity
 var item_category
-var item_buffs
+var base_buffs
+var elemental_buffs
 var icon_path
 var description
 var inventory_data = item_json_data.inventory_data

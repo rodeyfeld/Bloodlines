@@ -5,12 +5,11 @@
         "IconPath": "res://assets/items/gems/round-faceted-blue.png",
         "Description": "It shines with an intense light",
         "BaseBuffs": {
-            "BonusHealth": 10
+            "MaxHealth": 10
         },
         "ElementalBuffs": {
             "FIRE": {
-                "BonusHealth": 10,
-                "BonusDamage": 10
+                "DamageFlat": 10
             }   
         }
     },
@@ -24,8 +23,7 @@
         },
         "ElementalBuffs": {
             "FIRE": {
-                "BonusHealth": 10,
-                "BonusDamage": 10
+                "DamageFlat": 10
             }   
         }
     },
@@ -39,8 +37,7 @@
         },
         "ElementalBuffs": {
             "FIRE": {
-                "BonusHealth": 10,
-                "BonusDamage": 10
+                "DamageFlat": 10
             }   
         }
     },
@@ -54,8 +51,7 @@
         },
         "ElementalBuffs": {
             "FIRE": {
-                "BonusHealth": 10,
-                "BonusDamage": 10
+                "DamageFlat": 10
             }   
         }
     },
@@ -69,8 +65,7 @@
         },
         "ElementalBuffs": {
             "FIRE": {
-                "BonusHealth": 10,
-                "BonusDamage": 10
+                "DamageFlat": 10
             }   
         }
     }

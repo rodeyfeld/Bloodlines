@@ -44,7 +44,7 @@ func refresh_style():
 		set('custom_styles/panel', default_style)
 
 	if item:
-		var tooltip_str = str(item.item_name, "\n", item.item_buffs)
+		var tooltip_str = str(item.item_name)
 		set("hint_tooltip", tooltip_str)
 	else:
 		set("hint_tooltip", "")

@@ -7,16 +7,24 @@
             "IconPath": "res://assets/items/gems/round-faceted-blue.png",
             "Description": "It shines with an intense light",
             "BaseBuffs": {
-                "BonusHealth": 10
+                "MaxHealth": 10,
+                "HealthRegenPercent": 0,
+                "HealthRegenFlat": 0,
+                "MaxMana": 0,
+                "ManaRegenPercent": 0,
+                "ManaRegenFlat": 0,
+                "MaxArmor": 0,
+                "ArmorRegenPercent": 0,
+                "ArmorRegenFlat": 0,
+                "SpeedPercent": 0,
+                "SpeedFlat": 0
             },
             "ElementalBuffs": {
                 "FIRE": {
-                    "BonusHealth": 10,
-                    "BonusDamage": 10
+                    "DamageFlat": 10
                 },
                 "SHADOW": {
-                    "BonusHealth": 10,
-                    "BonusDamage": 10
+                    "DamageFlat": 10
                 }   
             }
         },
@@ -27,44 +35,21 @@
             "IconPath": "res://assets/items/gems/oval-faceted-green.png",
             "Description": "It sparkles mysteriously",
             "BaseBuffs": {
-                "BonusHealth": 10
+                "MaxHealth": 15,
+                "HealthRegenPercent": 0,
+                "HealthRegenFlat": 0,
+                "MaxMana": 0,
+                "ManaRegenPercent": 0,
+                "ManaRegenFlat": 0,
+                "MaxArmor": 0,
+                "ArmorRegenPercent": 0,
+                "ArmorRegenFlat": 0,
+                "SpeedPercent": 0,
+                "SpeedFlat": 0
             },
             "ElementalBuffs": {
                 "FIRE": {
-                    "BonusHealth": 10,
-                    "BonusDamage": 10
-                }   
-            }
-        },
-        {
-            "ItemCategory": "Gem",
-            "ItemName": "Emerald Barannio",
-            "StackSize": 10,
-            "IconPath": "res://assets/items/gems/square-cabochon-green.png",
-            "Description": "It twinkles ominously",
-            "BaseBuffs": {
-                "BonusHealth": 10
-            },
-            "ElementalBuffs": {
-                "FIRE": {
-                    "BonusHealth": 10,
-                    "BonusDamage": 10
-                }   
-            }
-        },        
-        {
-            "ItemCategory": "Gem",
-            "ItemName": "Bianco Teranio",
-            "StackSize": 10,
-            "IconPath": "res://assets/items/gems/round-faceted-white.png",
-            "Description": "A milky white anomaly",
-            "BaseBuffs": {
-                "BonusHealth": 10
-            },
-            "ElementalBuffs": {
-                "FIRE": {
-                    "BonusHealth": 10,
-                    "BonusDamage": 10
+                    "DamageFlat": 10
                 }   
             }
         }
