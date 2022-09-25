@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Entity",
 "language": "GDScript",
 "path": "res://scripts/entities/entity.gd"
+}, {
+"base": "Node",
+"class": "elemental_type_enum",
+"language": "GDScript",
+"path": "res://scenes/attributes/elemental_enum.gd"
 } ]
 _global_script_class_icons={
-"Entity": ""
+"Entity": "",
+"elemental_type_enum": ""
 }
 
 [application]

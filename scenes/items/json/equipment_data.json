@@ -5,8 +5,10 @@
         "IconPath": "res://assets/items/gems/round-faceted-blue.png",
         "Description": "It shines with an intense light",
         "ItemBuffs": {
-            "BonusHealth": 10,
-            "BonusDamage": 10
+            "FIRE": {
+                "BonusHealth": 10,
+                "BonusDamage": 10
+            }   
         }
     },
     "Slot2":
@@ -15,8 +17,10 @@
         "IconPath": "res://assets/items/gems/round-faceted-blue.png",
         "Description": "It shines with an intense light",
         "ItemBuffs": {
-            "BonusHealth": 10,
-            "BonusDamage": 10
+            "FIRE": {
+                "BonusHealth": 10,
+                "BonusDamage": 10
+            }   
         }
     },
     "Slot3":
@@ -25,8 +29,10 @@
         "IconPath": "res://assets/items/gems/round-faceted-blue.png",
         "Description": "It shines with an intense light",
         "ItemBuffs": {
-            "BonusHealth": 10,
-            "BonusDamage": 10
+            "FIRE": {
+                "BonusHealth": 10,
+                "BonusDamage": 10
+            }   
         }
     },
     "Slot4":
@@ -35,8 +41,10 @@
         "IconPath": "res://assets/items/gems/round-faceted-blue.png",
         "Description": "It shines with an intense light",
         "ItemBuffs": {
-            "BonusHealth": 10,
-            "BonusDamage": 10
+            "FIRE": {
+                "BonusHealth": 10,
+                "BonusDamage": 10
+            }   
         }
     },
     "Slot5":
@@ -45,8 +53,10 @@
         "IconPath": "res://assets/items/gems/round-faceted-blue.png",
         "Description": "It shines with an intense light",
         "ItemBuffs": {
-            "BonusHealth": 10,
-            "BonusDamage": 10
+            "FIRE": {
+                "BonusHealth": 10,
+                "BonusDamage": 10
+            }   
         }
     }
 }

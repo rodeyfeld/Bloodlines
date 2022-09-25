@@ -18,18 +18,4 @@ var bonus_armor_flat:float = 0.0
 # speed
 var bonus_speed_percent:float = 0.0
 var bonus_speed_flat:float = 0.0
-###################################
-### Stats relating to abilities ### 
-###################################
-# damage
-var bonus_damage_flat:float = 0.0
-var bonus_damage_percent:float = 0.0
-# cooldown
-var bonus_cooldown_flat:float = 0.0
-var bonus_cooldown_percent:float = 0.0
-# aoe
-var bonus_area_flat:float = 0.0
-var bonus_area_percent:float = 0.0
-# projectile speed
-var bonus_attack_speed_flat:float = 0.0
-var bonus_attack_speed_percent:float = 0.0
+
