@@ -636,7 +636,7 @@ animation = "left_idle"
 [node name="CollisionShape2D" parent="enemy/enemy_detection_zone" index="0"]
 shape = SubResource( 105 )
 
-[node name="animation_player" parent="enemy" index="6"]
+[node name="animation_player" parent="enemy" index="5"]
 anims/RESET = ExtResource( 14 )
 anims/down_idle = SubResource( 84 )
 anims/down_run = SubResource( 85 )
@@ -647,7 +647,7 @@ anims/right_run = SubResource( 89 )
 anims/up_idle = SubResource( 90 )
 anims/up_run = SubResource( 91 )
 
-[node name="animation_tree" parent="enemy" index="7"]
+[node name="animation_tree" parent="enemy" index="6"]
 tree_root = SubResource( 82 )
 anim_player = NodePath("../animation_player")
 active = true
@@ -655,7 +655,12 @@ parameters/playback = SubResource( 83 )
 parameters/Idle/blend_position = Vector2( 0, 0 )
 parameters/Run/blend_position = Vector2( 0, 0 )
 
+[node name="entity_stats" parent="enemy" index="15"]
+max_health = 10.0
+
 [editable path="enemy"]
 [editable path="enemy/Hurtbox"]
 [editable path="enemy/enemy_detection_zone"]
 [editable path="enemy/soft_body_collision"]
+[editable path="enemy/hitbox_pivot/Hitbox"]
+[editable path="enemy/enemy_attack_zone"]

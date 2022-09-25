@@ -1098,13 +1098,10 @@ shape = SubResource( 76 )
 frames = SubResource( 74 )
 animation = "run_down"
 
-[node name="Stats" parent="." index="3"]
-max_health = 50
-
-[node name="enemy_detection_zone" parent="." index="5"]
+[node name="enemy_detection_zone" parent="." index="4"]
 visible = true
 
-[node name="animation_player" parent="." index="6"]
+[node name="animation_player" parent="." index="5"]
 anims/RESET = SubResource( 60 )
 anims/attack_down = SubResource( 111 )
 anims/attack_left = SubResource( 112 )
@@ -1119,7 +1116,7 @@ anims/run_left = SubResource( 57 )
 anims/run_right = SubResource( 58 )
 anims/run_up = SubResource( 59 )
 
-[node name="animation_tree" parent="." index="7"]
+[node name="animation_tree" parent="." index="6"]
 tree_root = SubResource( 75 )
 anim_player = NodePath("../animation_player")
 parameters/playback = SubResource( 8 )
@@ -1130,7 +1127,7 @@ parameters/Run/blend_position = Vector2( 0, 0 )
 [node name="CollisionShape2D" parent="soft_body_collision" index="0"]
 shape = SubResource( 77 )
 
-[node name="hitbox_pivot" parent="." index="12"]
+[node name="hitbox_pivot" parent="." index="11"]
 visible = false
 position = Vector2( 0, 4 )
 
@@ -1144,7 +1141,7 @@ position = Vector2( 15, 0 )
 shape = SubResource( 122 )
 disabled = false
 
-[node name="enemy_attack_zone" parent="." index="13"]
+[node name="enemy_attack_zone" parent="." index="12"]
 visible = false
 monitorable = false
 
@@ -1152,14 +1149,14 @@ monitorable = false
 visible = false
 shape = SubResource( 123 )
 
-[node name="hp_icon" parent="." index="14"]
+[node name="hp_icon" parent="." index="13"]
 visible = false
 margin_left = -26.0
 margin_top = 12.0
 margin_right = 486.0
 margin_bottom = 524.0
 
-[node name="hp_bar" parent="." index="15"]
+[node name="hp_bar" parent="." index="14"]
 margin_left = -14.0
 margin_top = 24.0
 margin_right = 14.0

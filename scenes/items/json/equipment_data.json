@@ -4,7 +4,10 @@
         "ItemCategory": "Gem",
         "IconPath": "res://assets/items/gems/round-faceted-blue.png",
         "Description": "It shines with an intense light",
-        "ItemBuffs": {
+        "BaseBuffs": {
+            "BonusHealth": 10
+        },
+        "ElementalBuffs": {
             "FIRE": {
                 "BonusHealth": 10,
                 "BonusDamage": 10
@@ -16,7 +19,10 @@
         "ItemCategory": "Gem",
         "IconPath": "res://assets/items/gems/round-faceted-blue.png",
         "Description": "It shines with an intense light",
-        "ItemBuffs": {
+        "BaseBuffs": {
+            "BonusHealth": 10
+        },
+        "ElementalBuffs": {
             "FIRE": {
                 "BonusHealth": 10,
                 "BonusDamage": 10
@@ -28,7 +34,10 @@
         "ItemCategory": "Gem",
         "IconPath": "res://assets/items/gems/round-faceted-blue.png",
         "Description": "It shines with an intense light",
-        "ItemBuffs": {
+        "BaseBuffs": {
+            "BonusHealth": 10
+        },
+        "ElementalBuffs": {
             "FIRE": {
                 "BonusHealth": 10,
                 "BonusDamage": 10
@@ -40,7 +49,10 @@
         "ItemCategory": "Gem",
         "IconPath": "res://assets/items/gems/round-faceted-blue.png",
         "Description": "It shines with an intense light",
-        "ItemBuffs": {
+        "BaseBuffs": {
+            "BonusHealth": 10
+        },
+        "ElementalBuffs": {
             "FIRE": {
                 "BonusHealth": 10,
                 "BonusDamage": 10
@@ -52,7 +64,10 @@
         "ItemCategory": "Gem",
         "IconPath": "res://assets/items/gems/round-faceted-blue.png",
         "Description": "It shines with an intense light",
-        "ItemBuffs": {
+        "BaseBuffs": {
+            "BonusHealth": 10
+        },
+        "ElementalBuffs": {
             "FIRE": {
                 "BonusHealth": 10,
                 "BonusDamage": 10

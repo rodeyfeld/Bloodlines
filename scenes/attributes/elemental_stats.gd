@@ -5,16 +5,12 @@ const elemental_stat = preload("res://scenes/attributes/elemental_stat.gd")
 const elemental_type_enum = preload("res://scenes/attributes/elemental_enum.gd")
 
 
-var elemental_stats:Dictionary
+var elemental_stats_by_type:Dictionary
 
-func _ready():
-	var elemental_type_enum_instance = elemental_type_enum.instance()
-	elemental_stats = {
-		elemental_type_enum_instance.FIRE: elemental_stat.instance()
+func _init():
+	var elemental_type_enum_instance = elemental_type_enum.new()
+	elemental_stats_by_type = {
+		elemental_type_enum_instance.elemental_type.FIRE: elemental_stat.new()
 	}
 	
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

@@ -19,22 +19,9 @@ export(float) var armor_regen_flat = 0.0
 export(float) var speed_percent = 0.0
 export(float) var speed_flat = 0.0
 
-onready var health = max_health setget set_health
-onready var mana = max_mana
-onready var armor = max_armor
+var elemental_stats
 
-var elemental_stats 
-
-signal no_health
-signal health_changed(value)
-
-func set_health(value):
-	health = value
-	emit_signal("health_changed", health)
-	if health <= 0:
-		emit_signal("no_health")
-
-func _ready():
+func _init():
 	elemental_stats = elemental_stats_scene.new()
 	
 	

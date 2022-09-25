@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/entities/enemies/enemy.gd" type="Script" id=1]
 [ext_resource path="res://scenes/overlap/soft_body_collision.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/overlap/Hurtbox.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/attributes/Stats.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/attributes/entity_stats.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/ui/hud/bar-over.png" type="Texture" id=5]
 [ext_resource path="res://scenes/overlap/enemy_detection_zone.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/attributes/StatusTags.tscn" type="PackedScene" id=7]
@@ -45,9 +45,6 @@ visible = false
 shape = SubResource( 14 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-
-[node name="Stats" parent="." instance=ExtResource( 4 )]
-max_health = 5
 
 [node name="raycast_to_trail" type="RayCast2D" parent="."]
 scale = Vector2( 2, 2 )
@@ -116,8 +113,9 @@ stretch_margin_top = 4
 stretch_margin_right = 4
 stretch_margin_bottom = 4
 
+[node name="entity_stats" parent="." instance=ExtResource( 4 )]
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
-[connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
 [connection signal="timeout" from="idle_timer" to="." method="_on_idle_timer_timeout"]
 [connection signal="area_entered" from="enemy_attack_zone" to="." method="_on_enemy_attack_zone_area_entered"]
 

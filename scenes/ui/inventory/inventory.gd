@@ -8,7 +8,7 @@ onready var inventory_container = $inventory_container/RightPanel/NinePatchRect/
 onready var equipment_container = $inventory_container/LeftPanel/equipment_container
 onready var calculated_label = $inventory_container/LeftPanel/curr_equipped2/Label
 var holding_item = null
-var stats = null
+var entity_stats = null
 var inventory_data = item_json_data.inventory_data
 
 
@@ -27,7 +27,8 @@ func _ready():
 			inv_slot.item.item_name = stored_inventory_item['ItemName']
 			inv_slot.item.icon_path = stored_inventory_item['IconPath']
 			inv_slot.item.description = stored_inventory_item['Description']
-			inv_slot.item.item_buffs = stored_inventory_item['ItemBuffs']
+			inv_slot.item.base_buffs = stored_inventory_item['BaseBuffs']
+			inv_slot.item.elemental_buffs = stored_inventory_item['ElementalBuffs']
 			inv_slot.item.load_texture()
 			inv_slot.load_item()
 		inv_slot.connect("gui_input", self, "slot_gui_input", [inv_slot])
@@ -61,19 +62,19 @@ func _input(_event):
 		holding_item.global_position = get_global_mouse_position()
 	
 func update_calculated():
-	var base_dict = {
-		'BonusHealth': 0,
-		'BonusDamage': 0
-	}
+	
 	for inv_slot in equipment_container.get_children():
 		if inv_slot.item != null:
-			print(inv_slot.item.item_buffs.keys())
-			for element in inv_slot.item.item_buffs.keys():
-				print(element, inv_slot.item.item_buffs[element])
-#			base_dict.BonusHealth += inv_slot.item.item_buffs.BonusHealth
-#			base_dict.BonusDamage += inv_slot.item.item_buffs.BonusDamage
+#			print(inv_slot.item.item_buffs.keys())
+			entity_stats.equipment_stats.max_health += inv_slot.item.base_buffs['max_health']
+			for element in inv_slot.item.elemental_buffs.keys():
+				print(element, inv_slot.item.elemental_buffs[element])
+	if entity_stats:
+		print(entity_stats.equipment_stats)
+		entity_stats.update_stats()
 	
-	calculated_label.text = str("Bonus Health: ", base_dict.BonusHealth, "\n", "Bonus Damage: ", base_dict.BonusDamage)
+	
+#	calculated_label.text = str("Bonus Health: ", base_dict.BonusHealth, "\n", "Bonus Damage: ", base_dict.BonusDamage)
 	
 
 func _on_Panel5_equipment_updated():

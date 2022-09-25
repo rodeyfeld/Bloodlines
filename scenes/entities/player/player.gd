@@ -35,7 +35,7 @@ onready var trail_timer = $trail_timer
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var collision_shape2d = $CollisionShape2D
-onready var stats = $stats
+onready var entity_stats = $entity_stats
 onready var hp_bar = $hud/meter_bars/hp_bar
 onready var animationState = animationTree.get("parameters/playback")
 onready var camera_offset_path = $camera_offset_area/camera_offset_path
@@ -43,10 +43,10 @@ onready var camera_offset_path = $camera_offset_area/camera_offset_path
 func _ready():
 	inventory = inventory_scene.instance()
 	$hud.add_child(inventory)
-	inventory.stats = stats
+	inventory.entity_stats = entity_stats
 	inventory.global_position = $hud/Position2D.global_position
 	inventory.visible = false
-	hp_bar.max_value = stats.max_health
+	hp_bar.max_value = entity_stats.max_health
 	trail_timer.connect("timeout", self, "add_trail")
 
 func _physics_process(delta):
@@ -133,5 +133,5 @@ func _on_Hurtbox_area_entered(area):
 	get_node("/root").add_child(text)
 	text.position.x = self.position.x - (randi() % 50)
 	text.position.y = self.position.y - 40 - (randi() % 50)
-	stats.health -= area.damage
-	hp_bar.value = stats.health
+	entity_stats.health -= area.damage
+	hp_bar.value = entity_stats.health

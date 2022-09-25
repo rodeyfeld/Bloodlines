@@ -16,7 +16,7 @@
 [ext_resource path="res://assets/entities/player/right/SorceressRightJump.png" type="Texture" id=14]
 [ext_resource path="res://scenes/ui/hud/hud.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/overlap/Hurtbox.tscn" type="PackedScene" id=16]
-[ext_resource path="res://scenes/attributes/Stats.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/attributes/entity_stats.tscn" type="PackedScene" id=17]
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 8.0
@@ -966,13 +966,14 @@ rotation = 0.00366044
 
 [node name="hud" parent="." instance=ExtResource( 15 )]
 
-[node name="stats" parent="." instance=ExtResource( 17 )]
-
 [node name="Hurtbox" parent="." instance=ExtResource( 16 )]
 collision_layer = 4
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 shape = SubResource( 130 )
+
+[node name="entity_stats" parent="." instance=ExtResource( 17 )]
+max_health = 10.0
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 

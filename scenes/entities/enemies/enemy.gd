@@ -20,7 +20,7 @@ enum {
 } 
 var state = CHASE
 
-onready var stats = $Stats
+onready var entity_stats = $entity_stats
 onready var status_tags = $status_tags
 onready var hurtbox = $Hurtbox
 onready var sprite = $AnimatedSprite
@@ -39,8 +39,8 @@ var raycast_adjustments = [Vector2(0, -10), Vector2(0, 10), Vector2(10, 0), Vect
 
 func _ready():
 	animation_tree.active = true
-	hp_bar.max_value = stats.max_health
-	hp_bar.value = stats.max_health
+	hp_bar.max_value = entity_stats.max_health
+	hp_bar.value = entity_stats.max_health
 #	chase()
 
 func _physics_process(delta):
@@ -139,11 +139,11 @@ func _on_Hurtbox_area_entered(area):
 		get_node("/root").add_child(text)
 		text.position.x = self.position.x - (randi() % 50)
 		text.position.y = self.position.y - 40 - (randi() % 50)
-		stats.health -= area.damage
-		hp_bar.value = stats.health
+		entity_stats.health -= area.damage
+		hp_bar.value = entity_stats.health
 		
 
-func _on_Stats_no_health():
+func _on_entity_stats_no_health():
 	var ds = death_smoke.instance()
 	ds.position.x = self.position.x
 	ds.position.y = self.position.y
