@@ -8,6 +8,7 @@ onready var inventory_container = $inventory_container/RightPanel/NinePatchRect/
 onready var equipment_container = $inventory_container/LeftPanel/equipment_container
 onready var calculated_label = $inventory_container/LeftPanel/curr_equipped2/Label
 var holding_item = null
+var stats = null
 var inventory_data = item_json_data.inventory_data
 
 
@@ -66,11 +67,14 @@ func update_calculated():
 	}
 	for inv_slot in equipment_container.get_children():
 		if inv_slot.item != null:
-			base_dict.BonusHealth += inv_slot.item.item_buffs.BonusHealth
-			base_dict.BonusDamage += inv_slot.item.item_buffs.BonusDamage
+			print(inv_slot.item.item_buffs.keys())
+			for element in inv_slot.item.item_buffs.keys():
+				print(element, inv_slot.item.item_buffs[element])
+#			base_dict.BonusHealth += inv_slot.item.item_buffs.BonusHealth
+#			base_dict.BonusDamage += inv_slot.item.item_buffs.BonusDamage
 	
 	calculated_label.text = str("Bonus Health: ", base_dict.BonusHealth, "\n", "Bonus Damage: ", base_dict.BonusDamage)
-
+	
 
 func _on_Panel5_equipment_updated():
 	update_calculated()

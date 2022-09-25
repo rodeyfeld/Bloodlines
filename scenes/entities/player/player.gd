@@ -43,6 +43,7 @@ onready var camera_offset_path = $camera_offset_area/camera_offset_path
 func _ready():
 	inventory = inventory_scene.instance()
 	$hud.add_child(inventory)
+	inventory.stats = stats
 	inventory.global_position = $hud/Position2D.global_position
 	inventory.visible = false
 	hp_bar.max_value = stats.max_health
