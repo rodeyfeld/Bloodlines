@@ -219,6 +219,7 @@ explosiveness = 1.0
 process_material = SubResource( 22 )
 
 [node name="Hitbox" parent="." instance=ExtResource( 2 )]
+visible = false
 collision_mask = 8
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]

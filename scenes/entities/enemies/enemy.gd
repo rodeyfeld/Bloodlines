@@ -144,12 +144,11 @@ func _on_Hurtbox_area_entered(area):
 		
 
 func _on_Stats_no_health():
-	sprite.play("death")
-	queue_free()
 	var ds = death_smoke.instance()
 	ds.position.x = self.position.x
 	ds.position.y = self.position.y
 	get_node("/root").add_child(ds)
+	queue_free()
 
 
 func _on_idle_timer_timeout():
@@ -159,6 +158,6 @@ func _on_enemy_attack_zone_area_entered(_area):
 	attack_vector = velocity.normalized()
 	state = ATTACK
 
-func _on_enemy_attack_zone_area_exited(area):
+func _on_enemy_attack_zone_area_exited(_area):
 	hitbox_shape.set_deferred("disabled", true)
 	state = CHASE

@@ -2,11 +2,11 @@ extends Node
 
 
 var level_0 = preload("res://scenes/levels/level_0.tscn")
-#var level_2 = preload("res://scenes/levels/level_2.tscn")
+var level_1 = preload("res://scenes/levels/level_1.tscn")
 var player_scene = preload("res://scenes/entities/player/player.tscn")
 var transition_scene = preload("res://scenes/levels/transitions/level_transition.tscn")
 #var start_screen = preload("res://scenes/ui/start_screen/start_screen.tscn")
-var level_templates = [level_0]
+var level_templates = [level_0, level_1]
 var level_count = 0
 var player
 var curr_level
