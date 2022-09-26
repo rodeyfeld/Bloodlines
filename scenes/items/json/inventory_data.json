@@ -21,10 +21,25 @@
             },
             "ElementalBuffs": {
                 "FIRE": {
-                    "DamageFlat": 10
+                    "DamageFlat": 10,
+                    "DamagePercent": 0,
+                    "CooldownFlat": 0,
+                    "CooldownPercent": 0,
+                    "AreaFlat": 0,
+                    "AreaPercent": 0,
+                    "ProjectileSpeedFlat": 0,
+                    "ProjectileSpeedPercent": 0
+
                 },
                 "SHADOW": {
-                    "DamageFlat": 10
+                    "DamageFlat": 3,
+                    "DamagePercent": 0,
+                    "CooldownFlat": 0,
+                    "CooldownPercent": 0,
+                    "AreaFlat": 0,
+                    "AreaPercent": 0,
+                    "ProjectileSpeedFlat": 0,
+                    "ProjectileSpeedPercent": 0
                 }   
             }
         },
@@ -49,7 +64,15 @@
             },
             "ElementalBuffs": {
                 "FIRE": {
-                    "DamageFlat": 10
+                    "DamageFlat": 10,
+                    "DamagePercent": 0,
+                    "CooldownFlat": 0,
+                    "CooldownPercent": 0,
+                    "AreaFlat": 0,
+                    "AreaPercent": 0,
+                    "ProjectileSpeedFlat": 0,
+                    "ProjectileSpeedPercent": 0
+
                 }   
             }
         }
