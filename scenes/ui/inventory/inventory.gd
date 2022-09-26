@@ -8,6 +8,7 @@ var item_scene = preload("res://scenes/ui/inventory/Item.tscn")
 onready var inventory_container = $inventory_container/RightPanel/NinePatchRect/inventory_container
 onready var equipment_container = $inventory_container/LeftPanel/equipment_container
 onready var calculated_label = $inventory_container/LeftPanel/curr_equipped2/Label
+onready var holy_button = $inventory_container/LeftPanel/curr_equipped2/holy
 var holding_item = null
 var entity_stats = null
 var inventory_data = item_json_data.inventory_data
@@ -84,9 +85,6 @@ func update_calculated():
 				entity_stats.equipment_stats.speed_percent +=  inv_slot.item.base_buffs['SpeedPercent']
 				entity_stats.equipment_stats.speed_flat +=  inv_slot.item.base_buffs['SpeedFlat']
 				for element in inv_slot.item.elemental_buffs.keys():
-					print(element)
-					print(elemental_type_instance.elemental_type.get(element))
-					print(entity_stats.equipment_stats.elemental_stats.elemental_stats_by_type[elemental_type_instance.elemental_type.get(element)])
 					entity_stats.equipment_stats.elemental_stats.elemental_stats_by_type[elemental_type_instance.elemental_type.get(element)].damage_flat += inv_slot.item.elemental_buffs[str(element)]["DamageFlat"]
 					entity_stats.equipment_stats.elemental_stats.elemental_stats_by_type[elemental_type_instance.elemental_type.get(element)].damage_percent += inv_slot.item.elemental_buffs[str(element)]["DamagePercent"]
 					entity_stats.equipment_stats.elemental_stats.elemental_stats_by_type[elemental_type_instance.elemental_type.get(element)].cooldown_flat += inv_slot.item.elemental_buffs[str(element)]["CooldownFlat"]
@@ -96,19 +94,6 @@ func update_calculated():
 					entity_stats.equipment_stats.elemental_stats.elemental_stats_by_type[elemental_type_instance.elemental_type.get(element)].projectile_speed_flat += inv_slot.item.elemental_buffs[str(element)]["ProjectileSpeedFlat"]
 					entity_stats.equipment_stats.elemental_stats.elemental_stats_by_type[elemental_type_instance.elemental_type.get(element)].projectile_speed_percent += inv_slot.item.elemental_buffs[str(element)]["ProjectileSpeedPercent"]
 		entity_stats.update_stats()
-
-# damage
-var damage_flat:float = 0.0
-var damage_percent:float = 0.0
-# cooldown
-var cooldown_flat:float = 0.0
-var cooldown_percent:float = 0.0
-# aoe
-var area_flat:float = 0.0
-var area_percent:float = 0.0
-# projectile speed
-var projectile_speed_flat:float = 0.0
-var projectile_speed_percent:float = 0.0
 	
 #	calculated_label.text = str("Bonus Health: ", base_dict.BonusHealth, "\n", "Bonus Damage: ", base_dict.BonusDamage)
 	
@@ -130,3 +115,7 @@ func _on_Panel9_equipment_updated():
 
 func _on_Panel10_equipment_updated():
 	update_calculated()
+
+
+func _on_holy_toggled(button_pressed):
+	print(button_pressed)

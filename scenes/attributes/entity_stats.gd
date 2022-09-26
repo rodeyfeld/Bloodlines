@@ -78,5 +78,4 @@ func update_stats():
 		elemental_stats.elemental_stats_by_type[elemental_stat].area_percent += equipment_stats.elemental_stats.elemental_stats_by_type[elemental_stat].area_percent
 		elemental_stats.elemental_stats_by_type[elemental_stat].projectile_speed_flat += equipment_stats.elemental_stats.elemental_stats_by_type[elemental_stat].projectile_speed_flat
 		elemental_stats.elemental_stats_by_type[elemental_stat].projectile_speed_percent += equipment_stats.elemental_stats.elemental_stats_by_type[elemental_stat].projectile_speed_percent
-		
-		
+
