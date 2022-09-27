@@ -5,11 +5,11 @@ const elemental_type_enum = preload("res://scenes/attributes/elemental_enum.gd")
 
 
 var item_scene = preload("res://scenes/ui/inventory/Item.tscn")
-onready var inventory_container = $inventory_container/RightPanel/NinePatchRect/inventory_container
+onready var inventory_container = $inventory_container/LeftPanel/NinePatchRect/ScrollContainer/inventory_container
 onready var equipment_container = $inventory_container/LeftPanel/equipment_container
-onready var calculated_label = $inventory_container/LeftPanel/curr_equipped2/Label
-onready var holy_button = $inventory_container/LeftPanel/curr_equipped2/holy
-onready var damage_label = $inventory_container/LeftPanel/curr_equipped2/elemental_stats/damage/Label
+onready var calculated_label = $inventory_container/RightPanel/elemental_stats_container/Label
+onready var holy_button = $inventory_container/RightPanel/elemental_stats_container/holy
+onready var damage_label = $inventory_container/RightPanel/elemental_stats_container/elemental_stats/damage/Label
 var elemental_type_enum_instance
 var elemental_button_map:Dictionary
 var holding_item = null
