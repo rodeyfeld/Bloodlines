@@ -9,12 +9,18 @@ onready var inventory_container = $inventory_container/RightPanel/NinePatchRect/
 onready var equipment_container = $inventory_container/LeftPanel/equipment_container
 onready var calculated_label = $inventory_container/LeftPanel/curr_equipped2/Label
 onready var holy_button = $inventory_container/LeftPanel/curr_equipped2/holy
+onready var damage_label = $inventory_container/LeftPanel/curr_equipped2/elemental_stats/damage/Label
+var elemental_type_enum_instance
+var elemental_button_map:Dictionary
 var holding_item = null
 var entity_stats = null
 var inventory_data = item_json_data.inventory_data
 
 
 func _ready():
+	elemental_type_enum_instance = elemental_type_enum.new()
+	for e in elemental_type_enum_instance.elemental_type.values():
+		elemental_button_map[e] = true
 	var stored_inventory_items = item_json_data.inventory_data.Inventory_Items
 	for inv_slot in equipment_container.get_children():
 		inv_slot.equip_type = true
@@ -64,7 +70,6 @@ func _input(_event):
 		holding_item.global_position = get_global_mouse_position()
 	
 func update_calculated():
-	var elemental_type_instance = elemental_type_enum.new()
 	if entity_stats:
 		entity_stats.equipment_stats.set_to_zero()
 		for inv_slot in equipment_container.get_children():
@@ -85,17 +90,26 @@ func update_calculated():
 				entity_stats.equipment_stats.speed_percent +=  inv_slot.item.base_buffs['SpeedPercent']
 				entity_stats.equipment_stats.speed_flat +=  inv_slot.item.base_buffs['SpeedFlat']
 				for element in inv_slot.item.elemental_buffs.keys():
-					entity_stats.equipment_stats.elemental_stats.elemental_stats_by_type[elemental_type_instance.elemental_type.get(element)].damage_flat += inv_slot.item.elemental_buffs[str(element)]["DamageFlat"]
-					entity_stats.equipment_stats.elemental_stats.elemental_stats_by_type[elemental_type_instance.elemental_type.get(element)].damage_percent += inv_slot.item.elemental_buffs[str(element)]["DamagePercent"]
-					entity_stats.equipment_stats.elemental_stats.elemental_stats_by_type[elemental_type_instance.elemental_type.get(element)].cooldown_flat += inv_slot.item.elemental_buffs[str(element)]["CooldownFlat"]
-					entity_stats.equipment_stats.elemental_stats.elemental_stats_by_type[elemental_type_instance.elemental_type.get(element)].cooldown_percent += inv_slot.item.elemental_buffs[str(element)]["CooldownPercent"]
-					entity_stats.equipment_stats.elemental_stats.elemental_stats_by_type[elemental_type_instance.elemental_type.get(element)].area_flat += inv_slot.item.elemental_buffs[str(element)]["AreaFlat"]
-					entity_stats.equipment_stats.elemental_stats.elemental_stats_by_type[elemental_type_instance.elemental_type.get(element)].area_percent += inv_slot.item.elemental_buffs[str(element)]["AreaPercent"]
-					entity_stats.equipment_stats.elemental_stats.elemental_stats_by_type[elemental_type_instance.elemental_type.get(element)].projectile_speed_flat += inv_slot.item.elemental_buffs[str(element)]["ProjectileSpeedFlat"]
-					entity_stats.equipment_stats.elemental_stats.elemental_stats_by_type[elemental_type_instance.elemental_type.get(element)].projectile_speed_percent += inv_slot.item.elemental_buffs[str(element)]["ProjectileSpeedPercent"]
+					entity_stats.equipment_stats.elemental_stats.elemental_stats_by_type[elemental_type_enum_instance.elemental_type.get(element)].damage_flat += inv_slot.item.elemental_buffs[str(element)]["DamageFlat"]
+					entity_stats.equipment_stats.elemental_stats.elemental_stats_by_type[elemental_type_enum_instance.elemental_type.get(element)].damage_percent += inv_slot.item.elemental_buffs[str(element)]["DamagePercent"]
+					entity_stats.equipment_stats.elemental_stats.elemental_stats_by_type[elemental_type_enum_instance.elemental_type.get(element)].cooldown_flat += inv_slot.item.elemental_buffs[str(element)]["CooldownFlat"]
+					entity_stats.equipment_stats.elemental_stats.elemental_stats_by_type[elemental_type_enum_instance.elemental_type.get(element)].cooldown_percent += inv_slot.item.elemental_buffs[str(element)]["CooldownPercent"]
+					entity_stats.equipment_stats.elemental_stats.elemental_stats_by_type[elemental_type_enum_instance.elemental_type.get(element)].area_flat += inv_slot.item.elemental_buffs[str(element)]["AreaFlat"]
+					entity_stats.equipment_stats.elemental_stats.elemental_stats_by_type[elemental_type_enum_instance.elemental_type.get(element)].area_percent += inv_slot.item.elemental_buffs[str(element)]["AreaPercent"]
+					entity_stats.equipment_stats.elemental_stats.elemental_stats_by_type[elemental_type_enum_instance.elemental_type.get(element)].projectile_speed_flat += inv_slot.item.elemental_buffs[str(element)]["ProjectileSpeedFlat"]
+					entity_stats.equipment_stats.elemental_stats.elemental_stats_by_type[elemental_type_enum_instance.elemental_type.get(element)].projectile_speed_percent += inv_slot.item.elemental_buffs[str(element)]["ProjectileSpeedPercent"]
 		entity_stats.update_stats()
-	
+		update_equip_display()
 #	calculated_label.text = str("Bonus Health: ", base_dict.BonusHealth, "\n", "Bonus Damage: ", base_dict.BonusDamage)
+	
+func update_equip_display():
+	var damage_flat = 0.0
+	print(elemental_button_map)
+	for element_button_map_key in elemental_button_map.keys():
+		print(element_button_map_key)
+		if elemental_button_map[element_button_map_key] != false:
+			damage_flat += entity_stats.elemental_stats.elemental_stats_by_type[element_button_map_key].damage_flat
+	damage_label.text = str(damage_flat)
 	
 
 func _on_Panel5_equipment_updated():
@@ -118,4 +132,25 @@ func _on_Panel10_equipment_updated():
 
 
 func _on_holy_toggled(button_pressed):
-	print(button_pressed)
+	elemental_button_map[elemental_type_enum_instance.elemental_type.HOLY] = button_pressed
+	update_equip_display()
+
+func _on_shadow_toggled(button_pressed):
+	elemental_button_map[elemental_type_enum_instance.elemental_type.SHADOW] = button_pressed
+	update_equip_display()
+
+func _on_lightning_toggled(button_pressed):
+	elemental_button_map[elemental_type_enum_instance.elemental_type.LIGHTNING] = button_pressed
+	update_equip_display()
+
+func _on_fire_toggled(button_pressed):
+	elemental_button_map[elemental_type_enum_instance.elemental_type.FIRE] = button_pressed
+	update_equip_display()
+
+func _on_water_toggled(button_pressed):
+	elemental_button_map[elemental_type_enum_instance.elemental_type.WATER] = button_pressed
+	update_equip_display()
+
+func _on_wild_toggled(button_pressed):
+	elemental_button_map[elemental_type_enum_instance.elemental_type.WILD] = button_pressed
+	update_equip_display()

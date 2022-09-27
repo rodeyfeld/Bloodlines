@@ -37,5 +37,14 @@ func set_to_zero():
 	speed_percent = 0.0
 	speed_flat = 0.0
 	
-	
+	for elemental_stat in elemental_stats.elemental_stats_by_type.keys():
+		elemental_stats.elemental_stats_by_type[elemental_stat].damage_flat = 0.0
+		elemental_stats.elemental_stats_by_type[elemental_stat].damage_percent = 0.0
+		elemental_stats.elemental_stats_by_type[elemental_stat].cooldown_flat = 0.0
+		elemental_stats.elemental_stats_by_type[elemental_stat].cooldown_percent = 0.0
+		elemental_stats.elemental_stats_by_type[elemental_stat].area_flat = 0.0
+		elemental_stats.elemental_stats_by_type[elemental_stat].area_percent = 0.0
+		elemental_stats.elemental_stats_by_type[elemental_stat].projectile_speed_flat = 0.0
+		elemental_stats.elemental_stats_by_type[elemental_stat].projectile_speed_percent = 0.0
+
 

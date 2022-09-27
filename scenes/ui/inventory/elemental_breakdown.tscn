@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/effects/baseparticles/circle_03.png" type="Texture" id=1]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 1, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="GradientTexture" id=5]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="texprog2" type="TextureProgress" parent="."]
+show_behind_parent = true
+margin_right = 100.0
+margin_bottom = 100.0
+max_value = 360.0
+value = 360.0
+texture_progress = SubResource( 2 )
+fill_mode = 4
+nine_patch_stretch = true
+
+[node name="texprog3" type="TextureProgress" parent="."]
+show_behind_parent = true
+margin_right = 100.0
+margin_bottom = 100.0
+max_value = 360.0
+value = 350.0
+texture_progress = SubResource( 4 )
+fill_mode = 4
+nine_patch_stretch = true
+
+[node name="texprog" type="TextureProgress" parent="."]
+show_behind_parent = true
+margin_right = 100.0
+margin_bottom = 100.0
+rect_clip_content = true
+max_value = 360.0
+value = 280.0
+texture_progress = SubResource( 5 )
+fill_mode = 4
+nine_patch_stretch = true
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
+modulate = Color( 0.211765, 0.0156863, 0.0156863, 1 )
+position = Vector2( 121, 93 )
+scale = Vector2( 0.414063, 0.414063 )
+color = Color( 0.929412, 0, 0, 1 )
+invert_enable = true
+polygon = PoolVector2Array( -7.24527, -183.547, 43.4717, -173.887, 79.6981, -161.811, 113.509, -140.076, 140.075, -111.094, 164.226, -74.868, 178.717, -31.3963, 178.717, 24.1509, 161.811, 84.5283, 130.415, 123.17, 94.1887, 149.736, 53.1321, 171.472, 7.2453, 178.717, -48.3019, 173.887, -99.0189, 152.151, -132.83, 120.755, -164.226, 72.4528, -178.717, 28.9811, -178.717, -21.7359, -164.226, -72.4529, -137.66, -113.509, -106.264, -147.321, -70.0377, -169.057, -33.8113, -178.717 )
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 120.5, 90.4867 )
+scale = Vector2( 0.369141, 0.378958 )
+texture = ExtResource( 1 )

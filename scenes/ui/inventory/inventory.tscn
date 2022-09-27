@@ -211,6 +211,7 @@ margin_top = 12.5
 margin_right = 233.0
 margin_bottom = 50.5
 rect_scale = Vector2( 0.5, 0.5 )
+toggle_mode = true
 icon = ExtResource( 13 )
 flat = true
 
@@ -220,6 +221,7 @@ margin_top = 12.5
 margin_right = 255.0
 margin_bottom = 50.5
 rect_scale = Vector2( 0.5, 0.5 )
+toggle_mode = true
 icon = ExtResource( 11 )
 flat = true
 
@@ -229,6 +231,8 @@ margin_top = 12.5
 margin_right = 278.0
 margin_bottom = 50.5
 rect_scale = Vector2( 0.5, 0.5 )
+toggle_mode = true
+pressed = true
 icon = ExtResource( 12 )
 flat = true
 
@@ -238,6 +242,8 @@ margin_top = 12.5
 margin_right = 301.0
 margin_bottom = 50.5
 rect_scale = Vector2( 0.5, 0.5 )
+toggle_mode = true
+pressed = true
 icon = ExtResource( 14 )
 flat = true
 
@@ -247,6 +253,7 @@ margin_top = 12.5
 margin_right = 321.0
 margin_bottom = 50.5
 rect_scale = Vector2( 0.5, 0.5 )
+toggle_mode = true
 icon = ExtResource( 15 )
 flat = true
 
@@ -745,3 +752,8 @@ margin_bottom = 131.0
 [connection signal="equipment_updated" from="inventory_container/LeftPanel/equipment_container/Panel8" to="." method="_on_Panel8_equipment_updated"]
 [connection signal="equipment_updated" from="inventory_container/LeftPanel/equipment_container/Panel9" to="." method="_on_Panel9_equipment_updated"]
 [connection signal="toggled" from="inventory_container/LeftPanel/curr_equipped2/holy" to="." method="_on_holy_toggled"]
+[connection signal="toggled" from="inventory_container/LeftPanel/curr_equipped2/shadow" to="." method="_on_shadow_toggled"]
+[connection signal="toggled" from="inventory_container/LeftPanel/curr_equipped2/lightning" to="." method="_on_lightning_toggled"]
+[connection signal="toggled" from="inventory_container/LeftPanel/curr_equipped2/fire" to="." method="_on_fire_toggled"]
+[connection signal="toggled" from="inventory_container/LeftPanel/curr_equipped2/water" to="." method="_on_water_toggled"]
+[connection signal="toggled" from="inventory_container/LeftPanel/curr_equipped2/wild" to="." method="_on_wild_toggled"]

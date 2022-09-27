@@ -3,7 +3,10 @@ class_name elemental_type_enum
 
 
 enum elemental_type {
-	NONE,
+	HOLY,
+	SHADOW,
+	LIGHTNING,
 	FIRE,
-	SHADOW
+	WATER,
+	WILD
 }
